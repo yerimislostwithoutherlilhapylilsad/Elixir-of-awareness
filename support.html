@@ -77,5 +77,95 @@
         <p class="copyright">&copy; 2026 جميع الحقوق محفوظة لـ Miastra و Siraisia</p>
     </div>
 
+    <script>
+        const PROJECT_ID = "v6smc6gy"; // الـ Project ID الصحيح
+        const DATASET = "production"; 
+
+        const QUERY = encodeURIComponent(`*[_type == "post"]{ _id, title, content, body }`);
+        const SANITY_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+        function extractSnippet(post, maxLength = 150) {
+            const data = post.content || post.body;
+            if (!data) return "لا يوجد وصف متاح لهذا المقال.";
+
+            let text = "";
+            if (typeof data === 'string') {
+                text = data;
+            } else if (Array.isArray(data)) {
+                text = data
+                    .filter(b => b._type === 'block' && b.children)
+                    .map(b => b.children.map(c => c.text).join(' '))
+                    .join(' ');
+            }
+
+            return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+        }
+
+        async function fetchArticles() {
+            const wrapper = document.getElementById("articlesWrapper");
+            try {
+                const res = await fetch(SANITY_URL);
+                const { result: posts } = await res.json();
+
+                if (!posts || posts.length === 0) {
+                    wrapper.innerHTML = "<p class='loading-text'>لا توجد مقالات منشورة حالياً.</p>";
+                    return;
+                }
+
+                wrapper.innerHTML = posts.map(post => `
+                    <a href="artc.html?id=${post._id}" class="article-link">
+                        <div class="article-card">
+                            <div>
+                                <h2>${post.title || "مقال بدون عنوان"}</h2>
+                                <p>${extractSnippet(post)}</p>
+                            </div>
+                            <button class="read-more-btn">إقرأ المزيد ←</button>
+                        </div>
+                    </a>
+                `).join('');
+
+            } catch (err) {
+                wrapper.innerHTML = "<p class='loading-text' style='color:#e74c3c;'>عذراً، فشل الاتصال بقاعدة البيانات.</p>";
+            }
+        }
+
+        function toggleDropdown(e) {
+            if (e) e.stopPropagation();
+            document.getElementById("langDropdown").classList.toggle("show");
+        }
+
+        function filterLanguages() {
+            const q = document.getElementById("langSearch").value.toLowerCase();
+            document.querySelectorAll("#langsList a").forEach(el => {
+                el.style.display = el.textContent.toLowerCase().includes(q) ? "" : "none";
+            });
+        }
+
+        function changeLanguage(code) {
+            const select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = code;
+                select.dispatchEvent(new Event('change'));
+            }
+            document.getElementById("langDropdown").classList.remove("show");
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute("data-theme");
+            document.documentElement.setAttribute("data-theme", current === "light" ? "dark" : "light");
+        }
+
+        document.addEventListener("click", () => {
+            document.getElementById("langDropdown")?.classList.remove("show");
+        });
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'ar', autoDisplay: false }, 'google_translate_element');
+        }
+
+        window.addEventListener('load', fetchArticles);
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
