@@ -106,5 +106,271 @@ function googleTranslateElementInit() {
     </div>
 </div>
 
+<script>
+let isFirstMessageSent = false;
+let currentSiteLangCode = 'ar';
+
+let currentUser = {
+    name: "المستخدم",
+    avatarBg: "#d97706",
+    avatarText: "U",
+    avatarImage: null
+};
+
+const languagesList = [
+    { code: 'ar', name: 'العربية' },
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'Français' },
+    { code: 'es', name: 'Español' },
+    { code: 'de', name: 'Deutsch' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'zh-CN', name: '简体中文' },
+    { code: 'ja', name: '日本語' },
+    { code: 'ko', name: '한국어' },
+    { code: 'pt', name: 'Português' },
+    { code: 'tr', name: 'Türkçe' },
+    { code: 'nl', name: 'Nederlands' },
+    { code: 'pl', name: 'Polski' },
+    { code: 'sv', name: 'Svenska' },
+    { code: 'no', name: 'Norsk' },
+    { code: 'da', name: 'Dansk' },
+    { code: 'fi', name: 'Suomi' },
+    { code: 'el', name: 'Ελληνικά' },
+    { code: 'he', name: 'عברית' },
+    { code: 'fa', name: 'فارسی' },
+    { code: 'ur', name: 'اردو' },
+    { code: 'hi', name: 'हिन्दी' },
+    { code: 'bn', name: 'বাংলা' },
+    { code: 'id', name: 'Bahasa Indonesia' },
+    { code: 'ms', name: 'Bahasa Melayu' },
+    { code: 'th', name: 'ไทย' },
+    { code: 'vi', name: 'Tiếng Việt' },
+    { code: 'uk', name: 'Українська' },
+    { code: 'cs', name: 'Čeština' },
+    { code: 'hu', name: 'Magyar' },
+    { code: 'ro', name: 'Română' },
+    { code: 'sk', name: 'Slovenčina' },
+    { code: 'bg', name: 'Български' },
+    { code: 'hr', name: 'Hrvatski' },
+    { code: 'sr', name: 'Српски' },
+    { code: 'sl', name: 'Slovenščina' },
+    { code: 'et', name: 'Eesti' },
+    { code: 'lv', name: 'Latviešu' },
+    { code: 'lt', name: 'Lietuvių' },
+    { code: 'tl', name: 'Tagalog' },
+    { code: 'sw', name: 'Kiswahili' },
+    { code: 'af', name: 'Afrikaans' },
+    { code: 'sq', name: 'Shqip' },
+    { code: 'hy', name: 'Հայերեն' },
+    { code: 'az', name: 'Azərbaycan' },
+    { code: 'eu', name: 'Euskara' },
+    { code: 'be', name: 'Беларуская' },
+    { code: 'bs', name: 'Bosanski' },
+    { code: 'ca', name: 'Català' },
+    { code: 'ka', name: 'ქართული' },
+    { code: 'is', name: 'Íslenska' },
+    { code: 'mk', name: 'Македонски' },
+    { code: 'mt', name: 'Malti' },
+    { code: 'ga', name: 'Gaeilge' },
+    { code: 'cy', name: 'Cymraeg' },
+    { code: 'gl', name: 'Galego' }
+];
+
+function buildLangDropdown() {
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.innerHTML = '';
+    languagesList.forEach(lang => {
+        const a = document.createElement('a');
+        a.href = "javascript:void(0)";
+        a.className = "notranslate";
+        a.innerText = lang.name;
+        a.onclick = () => setWholePageLanguage(lang.code, lang.name);
+        dropdown.appendChild(a);
+    });
+}
+
+function setWholePageLanguage(langCode, langName) {
+    document.getElementById("langDropdown").classList.remove("show");
+    document.getElementById("langLabel").innerText = langName;
+    currentSiteLangCode = langCode;
+
+    const googleSelect = document.querySelector('.goog-te-combo');
+    if (googleSelect) {
+        googleSelect.value = langCode;
+        googleSelect.dispatchEvent(new Event('change'));
+    }
+}
+
+const quotesData = [
+    { category: "التوازن النفسي", text: "إدراكك لمشاعرك وقبولك لها في الوقت الحالي هو الخطوة الأولى والأساسية نحو استعادة توازنك الداخلي." },
+    { category: "الاستمرارية", text: "التقدم لا يتطلب خطوات عملاقة دائماً؛ الاستمرار في المحاولة والتكيف اليومي هو الإنجاز الحقيقي." },
+    { category: "الوعي الذاتي", text: "من الحق الكامل لذهنك وبدنك الحصول على أوقات من الراحة التامة لإعادة تنظيم الأفكار وتجديد الطاقة." },
+    { category: "المرونة النفسية", text: "التحديات الحالية هي مراحل انتقالية لترسيخ خبراتك؛ خذ وقتك الكافي في التعامل مع القلق." },
+    { category: "التقدير الذاتي", text: "ما تجتازه يومياً برزانة وصبر يعكس مستويات عالية من القدرة والثبات؛ كن منصفاً مع ذاتك." }
+];
+
+function generateQuote() {
+    const randomIndex = Math.floor(Math.random() * quotesData.length);
+    const item = quotesData[randomIndex];
+    document.getElementById("quoteText").innerText = item.text;
+    document.getElementById("cardCategory").innerText = item.category;
+}
+
+function toggleLangDropdown() {
+    document.getElementById("langDropdown").classList.toggle("show");
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+}
+
+function openProfileModal() {
+    document.getElementById("userNameInput").value = currentUser.name;
+    updatePreviewAvatar();
+    document.getElementById("profileModal").classList.add("show");
+}
+
+function closeProfileModal() {
+    document.getElementById("profileModal").classList.remove("show");
+}
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            currentUser.avatarImage = e.target.result;
+            updatePreviewAvatar();
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function updatePreviewAvatar() {
+    const preview = document.getElementById("previewAvatar");
+    if (currentUser.avatarImage) {
+        preview.style.backgroundImage = `url(${currentUser.avatarImage})`;
+        preview.innerText = "";
+    } else {
+        preview.style.backgroundImage = "none";
+        preview.innerText = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : "U";
+    }
+}
+
+function saveProfileSettings() {
+    const newName = document.getElementById("userNameInput").value.trim();
+    if (newName) {
+        currentUser.name = newName;
+        currentUser.avatarText = newName.charAt(0).toUpperCase();
+    }
+    
+    const userAvatars = document.querySelectorAll('.message-wrapper.sent .msg-avatar-icon');
+    userAvatars.forEach(avatar => {
+        applyAvatarStyles(avatar);
+    });
+
+    closeProfileModal();
+}
+
+function applyAvatarStyles(element) {
+    if (currentUser.avatarImage) {
+        element.style.backgroundImage = `url(${currentUser.avatarImage})`;
+        element.innerText = "";
+    } else {
+        element.style.backgroundImage = "none";
+        element.innerText = currentUser.avatarText;
+    }
+}
+
+function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const text = input.value.trim();
+    
+    if (text !== '') {
+        const messagesContainer = document.getElementById('chatMessages');
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'message-wrapper sent';
+
+        const avatarDiv = document.createElement('div');
+        avatarDiv.className = 'msg-avatar-icon user-msg-avatar';
+        applyAvatarStyles(avatarDiv);
+
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message';
+        msgDiv.innerHTML = `
+            <span class="msg-content">${text}</span>
+            <div class="msg-footer">
+                <span class="time">${timeString}</span>
+            </div>
+        `;
+
+        wrapper.appendChild(avatarDiv);
+        wrapper.appendChild(msgDiv);
+        messagesContainer.appendChild(wrapper);
+
+        input.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        if (!isFirstMessageSent) {
+            isFirstMessageSent = true;
+            setTimeout(() => {
+                const autoWrapper = document.createElement('div');
+                autoWrapper.className = 'message-wrapper received';
+                const autoText = "هذه المساحة مخصصة تماماً لراحتك وسريتك. يمكنك الطرح والكتابة بكل حرية وبكافة التفاصيل التي تراها مناسبة، وسيتم الرد عليك والتفاعل مع رسالتك في أقرب وقت ممكن.";
+                
+                autoWrapper.innerHTML = `
+                    <div class="msg-avatar-icon">M</div>
+                    <div class="message">
+                        <span class="msg-content">${autoText}</span>
+                        <div class="msg-footer">
+                            <span class="time">${timeString}</span>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(autoWrapper);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1200);
+        }
+    }
+}
+
+function searchMessages() {
+    const query = document.getElementById('chatSearch').value.toLowerCase().trim();
+    const wrappers = document.querySelectorAll('.message-wrapper');
+
+    wrappers.forEach(wrapper => {
+        const text = wrapper.querySelector('.message').innerText.toLowerCase();
+        if (text.includes(query)) {
+            wrapper.classList.remove('hidden');
+        } else {
+            wrapper.classList.add('hidden');
+        }
+    });
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.top-btn')) {
+        const dropdown = document.getElementById("langDropdown");
+        if (dropdown && dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+        }
+    }
+}
+
+buildLangDropdown();
+generateQuote();
+</script>
+
 </body>
 </html>
