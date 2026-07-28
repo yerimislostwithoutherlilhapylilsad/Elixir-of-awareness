@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="metaTitle">Elixir of Awareness</title>
+<meta name="description" id="metaDesc" content="الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.">
+<meta name="keywords" content="الوعي, الدعم النفسي, قضايا اجتماعية, الأمراض النادرة, Elixir of Awareness">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elixir of Awareness">
+<meta property="og:description" content="الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.">
+<meta property="og:image" content="aw.png">
+<meta property="og:site_name" content="Elixir of Awareness">
+
+<link rel="icon" type="image/png" href="aw.png">
+<link rel="stylesheet" href="style4.css">
+</head>
+
+<body>
+
+<div id="google_translate_element"></div>
+
+<div class="elixir">
+    <button id="authBtn" class="tbt" onclick="handleAuthClick()">Log in / Sign up</button>
+
+    <div class="compassControls">
+        <div class="ctc">
+            <button class="tbt translate-btn" onclick="toggleDropdown()">اللغة/Language</button>
+
+            <div class="translationHub" id="langDropdown">
+                <div class="langGuid">
+                    <input type="text" id="langSearch" placeholder="ابحث عن لغة..." onkeyup="filterLanguages()">
+                </div>
+                
+                <div class="languages-list" id="langsList"></div>
+            </div>
+        </div>
+
+        <button class="tbt" onclick="toggleTheme()">المظهر/Theme</button>
+        <img src="aw.png" alt="Awareness" class="awarenessSymbol">
+    </div>
+</div>
+
+<div class="empathy">
+    <h1>Elixir of Awareness</h1>
+    <p>الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.</p>
+</div>
+
+<div class="solidarityhub">
+    <a href="support.html" class="bridgeOfTruth">
+        <div class="remedycard awakeningCard">
+            <h2>الدعم النفسي</h2>
+            <p>إعرف المزيد عن الدعم النفسي وطرق التعامل معه.</p>
+            <img src="ms.png" alt="Elixir of Awareness" class="crownView">
+        </div>
+    </a>
+
+    <a href="social.html" class="bridgeOfTruth">
+        <div class="remedycard healingCard">
+            <h2>قضايا اجتماعية</h2>
+            <p>قضايا اجتماعية ، لمعرفة الحقيقة و كيفية التعامل </p>
+            <img src="social.png" alt="Elixir of Awareness" class="crownView">
+        </div>
+    </a>
+
+    <a href="info.html" class="bridgeOfTruth">
+        <div class="remedycard transcendenceCard">
+            <h2>الاضطرابات والأمراض النادرة</h2>
+            <p>لإدراك المزيد عن الامراض و الاضطرابات الغير شائعة</p>
+            <img src="d.png" alt="Elixir of Awareness" class="crownView">
+        </div>
+    </a>
+</div>
+
+<div class="admin-cute-panel" id="adminPanel">
+    <h3>Welcome to our Elixir.</h3>
+    <div class="adminplace">
+        <a href="miastra.html" class="mindfulness vishuddha">
+            <span class="innerClarity">Miastra</span>
+            <span class="awakenedMind"> دخول</span>
+        </a>
+        <a href="siraisia.html" class="mindfulness sahasrara">
+            <span class="innerClarity">Siraisia</span>
+            <span class="awakenedMind"> دخول</span>
+        </a>
+    </div>
+</div>
+
+<div class="advocacyrealm" id="userRealm">
+    <a href="https://awakingrenrei57.netlify.app/" target="_blank" class="mySafeRenrei">موقعنا RenRei</a>
+
+    <div class="alchemyofhopebtns">
+        <h3> تواصل معنا عبر البريد الإلكتروني</h3>
+        <div class="energyCluster">
+            <a href="mailto:miastra673@gmail.com" class="unitebtn echomail2"> تواصل مع Miastra</a>
+            <a href="mailto:siraisia573@gmail.com" class="unitebtn echomail"> تواصل مع Siraisia</a>
+        </div>
+    </div>
+
+    <div class="alchemyofhopebtns">
+        <h3>غرف الدردشة المباشرة </h3>
+        <div class="energyCluster">
+            <div onclick="navigateToChat('chatmia.html', 'miastra')" class="unitebtn dialoguechat"> دردشة مباشرة مع ميا</div>
+            <div onclick="navigateToChat('chatsia.html', 'siraisia')" class="unitebtn dialoguechat2"> دردشة مباشرة مع سيا</div>
+        </div>
+    </div>
+</div>
+
+<div class="aurashroud" id="loginModal">
+    <div class="sanctuarygate">
+        <span class="unwind" onclick="closeLoginModal()">&times;</span>
+        <h2 id="modalTitle">Log In / Sign Up</h2>
+        
+        <input type="email" id="userEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <button class="recallPath" onclick="resetPassword()">نسيت كلمة المرور؟</button>
+        
+        <div class="triggers">
+            <button class="manifestaccess" onclick="submitLogin()">Log In</button>
+            <button class="signup-submit-btn" onclick="submitSignUp()">Sign Up</button>
+        </div>
+
+        <div class="divider"><span>أو</span></div>
+
+        <button class="google-nexus" onclick="loginWithGoogle()">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.259h2.908c1.702-1.567 2.684-3.874 2.684-6.617z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/></svg>
+            تسجيل الدخول بواسطة جوجل
+        </button>
+
+        <button class="seeker" onclick="loginAsGuest()">متابعة كزائر (بدون حساب)</button>
+        <p class="seekerguidance"> أصل بيانات الزائر مؤقت ويُمسح تلقائيًا بعد 30 يوم.</p>
+    </div>
+</div>
+
+<div class="aetherbase">
+    <p class="healingmotto">الحق حق وناكر الحق مجرم ، وداعم المجرم اكثر اجراما</p>
+    <p class="legacy">&copy; 2026 جميع الحقوق محفوظة لـ Siraisia و Miastra</p>
+</div>
+
+<div class="signature">Siraisia & Miastra</div>
+
+</body>
+</html>
