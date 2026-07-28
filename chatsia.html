@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز الدعم النفسي والدردشة المباشرة</title>
+
+<link rel="stylesheet" href="style3.css">
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ar',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+
+<div id="google_translate_element"></div>
+
+<div class="top-bar">
+    <a href="index.html" class="top-btn" id="homeBtn">↩ العودة للرئيسية</a>
+
+    <div class="controls-group">
+        <div class="lang-dropdown-container notranslate">
+            <button class="top-btn" onclick="toggleLangDropdown()">🌐 <span id="langLabel">اللغة</span></button>
+            <div class="lang-dropdown notranslate" id="langDropdown"></div>
+        </div>
+
+        <button class="top-btn" onclick="toggleTheme()">🌗 المظهر</button>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="quote-card">
+        <div class="card-title" id="cardCategory">رسالة واستبصار اليوم</div>
+        <div class="quote-text" id="quoteText">اضغط على الزر لاستعراض رسالة دعم مخصصة لك الآن.</div>
+        <button class="gen-btn" id="genBtn" onclick="generateQuote()">عرض رسالة جديدة</button>
+    </div>
+
+    <div class="chat-box">
+        <div class="chat-header">
+            <div class="profile-info">
+                <div class="avatar-container">
+                    <div class="profile-avatar-icon">M</div>
+                    <span class="status-online"></span>
+                </div>
+                <h3 id="chatTitle">جلسة المحادثة المباشرة مع <span class="notranslate">Miastra</span></h3>
+            </div>
+
+            <div class="header-actions">
+                <button class="edit-profile-btn" onclick="openProfileModal()">👤 الملف الشخصي</button>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="chatSearch" placeholder="بحث..." oninput="searchMessages()">
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message-wrapper received">
+                <div class="msg-avatar-icon">M</div>
+                <div class="message">
+                    <span class="msg-content">مرحباً بك. كيف يمكنني تقديم الدعم أو المساهمة في مساعيك اليوم؟</span>
+                    <div class="msg-footer">
+                        <span class="time">10:00 ص</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="messageInput" placeholder="اكتب رسالتك بالتفصيل هنا..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">إرسال الرسالة</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="profileModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>تعديل البيانات الشخصية</h3>
+            <button class="close-modal" onclick="closeProfileModal()">✕</button>
+        </div>
+
+        <div class="profile-preview-area">
+            <div class="preview-avatar" id="previewAvatar">U</div>
+            <span style="font-size:0.8rem; opacity:0.7;">معاينة الصورة الحالية</span>
+        </div>
+
+        <div class="form-group">
+            <label>اسم المستخدم:</label>
+            <input type="text" id="userNameInput" placeholder="أدخل اسمك هنا..." value="المستخدم">
+        </div>
+
+        <div class="form-group">
+            <label>تغيير الصورة الشخصية:</label>
+            <input type="file" id="userAvatarInput" accept="image/*" onchange="handleImageUpload(event)">
+        </div>
+
+        <button class="save-profile-btn" onclick="saveProfileSettings()">حفظ التغيرات</button>
+    </div>
+</div>
+
+</body>
+</html>
