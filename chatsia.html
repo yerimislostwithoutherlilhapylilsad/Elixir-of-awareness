@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مركز الدعم النفسي والدردشة المباشرة</title>
-
+<title>Siraisia's safe zone</title>
 <link rel="stylesheet" href="style3.css">
-
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
@@ -23,37 +21,37 @@ function googleTranslateElementInit() {
 <div id="google_translate_element"></div>
 
 <div class="top-bar">
-    <a href="index.html" class="top-btn" id="homeBtn">↩ العودة للرئيسية</a>
+    <a href="index.html" class="top-btn" id="homeBtn"> العودة للرئيسية</a>
 
     <div class="controls-group">
         <div class="lang-dropdown-container notranslate">
-            <button class="top-btn" onclick="toggleLangDropdown()">🌐 <span id="langLabel">اللغة</span></button>
+            <button class="top-btn" onclick="toggleLangDropdown()">Language\اللغة <span id="langLabel">اللغة</span></button>
             <div class="lang-dropdown notranslate" id="langDropdown"></div>
         </div>
 
-        <button class="top-btn" onclick="toggleTheme()">🌗 المظهر</button>
+        <button class="top-btn" onclick="toggleTheme()">theme\ المظهر</button>
     </div>
 </div>
 
 <div class="main-container">
     <div class="quote-card">
-        <div class="card-title" id="cardCategory">رسالة واستبصار اليوم</div>
-        <div class="quote-text" id="quoteText">اضغط على الزر لاستعراض رسالة دعم مخصصة لك الآن.</div>
-        <button class="gen-btn" id="genBtn" onclick="generateQuote()">عرض رسالة جديدة</button>
+        <div class="card-title" id="cardCategory">ألكسير الوعي</div>
+        <div class="quote-text" id="quoteText">نصيحة ألكسير الوعي</div>
+        <button class="gen-btn" id="genBtn" onclick="generateQuote()">الحصول على أمل جديد</button>
     </div>
 
     <div class="chat-box">
         <div class="chat-header">
             <div class="profile-info">
                 <div class="avatar-container">
-                    <div class="profile-avatar-icon">M</div>
+                    <div class="profile-avatar-icon">Sia</div>
                     <span class="status-online"></span>
                 </div>
-                <h3 id="chatTitle">جلسة المحادثة المباشرة مع <span class="notranslate">Miastra</span></h3>
+                <h3 id="chatTitle">جلسة المحادثة المباشرة مع <span class="notranslate">Siraisia</span></h3>
             </div>
 
             <div class="header-actions">
-                <button class="edit-profile-btn" onclick="openProfileModal()">👤 الملف الشخصي</button>
+                <button class="edit-profile-btn" onclick="openProfileModal()"> الملف الشخصي</button>
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
                     <input type="text" class="search-input" id="chatSearch" placeholder="بحث..." oninput="searchMessages()">
@@ -63,11 +61,11 @@ function googleTranslateElementInit() {
 
         <div class="chat-messages" id="chatMessages">
             <div class="message-wrapper received">
-                <div class="msg-avatar-icon">M</div>
+                <div class="msg-avatar-icon">Sia</div>
                 <div class="message">
-                    <span class="msg-content">مرحباً بك. كيف يمكنني تقديم الدعم أو المساهمة في مساعيك اليوم؟</span>
+                    <span class="msg-content">أهلا بك في ملاذك الآمن، قم بإرسال ما تشاء ، سنكون بإنتظارك</span>
                     <div class="msg-footer">
-                        <span class="time">10:00 ص</span>
+                        <span class="time">13:57</span>
                     </div>
                 </div>
             </div>
@@ -88,8 +86,8 @@ function googleTranslateElementInit() {
         </div>
 
         <div class="profile-preview-area">
-            <div class="preview-avatar" id="previewAvatar">U</div>
-            <span style="font-size:0.8rem; opacity:0.7;">معاينة الصورة الحالية</span>
+            <div class="preview-avatar" id="previewAvatar">A star of our Elixir</div>
+            <span style="font-size:0.8rem; opacity:0.7;"> الصورة الحالية</span>
         </div>
 
         <div class="form-group">
@@ -102,7 +100,7 @@ function googleTranslateElementInit() {
             <input type="file" id="userAvatarInput" accept="image/*" onchange="handleImageUpload(event)">
         </div>
 
-        <button class="save-profile-btn" onclick="saveProfileSettings()">حفظ التغيرات</button>
+        <button class="save-profile-btn" onclick="saveProfileSettings()">حفظ</button>
     </div>
 </div>
 
@@ -207,7 +205,8 @@ const quotesData = [
     { category: "الاستمرارية", text: "التقدم لا يتطلب خطوات عملاقة دائماً؛ الاستمرار في المحاولة والتكيف اليومي هو الإنجاز الحقيقي." },
     { category: "الوعي الذاتي", text: "من الحق الكامل لذهنك وبدنك الحصول على أوقات من الراحة التامة لإعادة تنظيم الأفكار وتجديد الطاقة." },
     { category: "المرونة النفسية", text: "التحديات الحالية هي مراحل انتقالية لترسيخ خبراتك؛ خذ وقتك الكافي في التعامل مع القلق." },
-    { category: "التقدير الذاتي", text: "ما تجتازه يومياً برزانة وصبر يعكس مستويات عالية من القدرة والثبات؛ كن منصفاً مع ذاتك." }
+    { category: "التقدير الذاتي", text: "ما تجتازه يومياً برزانة وصبر يعكس مستويات عالية من القدرة والثبات؛ كن منصفاً مع ذاتك." },
+    { category: "حورس", text: "حورس في الآفاق لكن ينتظر من يجروء على النظر إليه" }
 ];
 
 function generateQuote() {
@@ -321,8 +320,7 @@ function sendMessage() {
             setTimeout(() => {
                 const autoWrapper = document.createElement('div');
                 autoWrapper.className = 'message-wrapper received';
-                const autoText = "هذه المساحة مخصصة تماماً لراحتك وسريتك. يمكنك الطرح والكتابة بكل حرية وبكافة التفاصيل التي تراها مناسبة، وسيتم الرد عليك والتفاعل مع رسالتك في أقرب وقت ممكن.";
-                
+                  const autoText ="مبسوطة بوجودك هنا، يا ريت تحكي كل اللي ف قلبك ، وهرد بأسرع وقت ممكن إن شاء الله";                
                 autoWrapper.innerHTML = `
                     <div class="msg-avatar-icon">M</div>
                     <div class="message">
