@@ -99,5 +99,105 @@
             if (!contentData) return "لا يوجد محتوى نصي متاح حالياً لهذا المقال.";
             
             let fullText = "";
+            if (typeof contentData === 'string') {
+                fullText = contentData;
+            } else if (Array.isArray(contentData)) {
+                fullText = contentData
+                    .map(block => {
+                        if (block._type === 'block' && block.children) {
+                            return block.children.map(child => child.text || '').join(' ');
+                        }
+                        return '';
+                    })
+                    .join(' ');
+            }
+
+            fullText = fullText.trim();
+            if (!fullText) return "لا يوجد محتوى نصي متاح حالياً لهذا المقال.";
+            if (fullText.length <= maxLength) return fullText;
+            return fullText.substring(0, maxLength) + "...";
+        }
+
+        async function fetchArticlesFromSanity() {
+            const wrapper = document.getElementById("articlesWrapper");
+            try {
+                const response = await fetch(SANITY_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+                const data = await response.json();
+                const posts = data.result;
+
+                if (!posts || posts.length === 0) {
+                    wrapper.innerHTML = "<p class='loading-text'>لا توجد مقالات منشورة حالياً.</p>";
+                    return;
+                }
+
+                wrapper.innerHTML = ""; 
+
+                posts.forEach(post => {
+                    // استخراج أول 100 حرف فقط
+                    const snippet = extractAndCutContent(post, 100);
+                    
+                    const cardHTML = `
+                        <a href="artc1.html?id=${post._id}" class="article-link">
+                            <div class="article-card">
+                                <div>
+                                    <h2>${post.title || "مقال بدون عنوان"}</h2>
+                                    <p>${snippet}</p>
+                                </div>
+                                <button class="read-more-btn">إقرأ المزيد</button>
+                            </div>
+                        </a>
+                    `;
+                    wrapper.insertAdjacentHTML('beforeend', cardHTML);
+                });
+
+            } catch (error) {
+                console.error("Sanity Error:", error);
+                wrapper.innerHTML = "<p class='loading-text' style='color:#e74c3c;'>عذراً، تعذر تحميل البيانات. يرجى المراجعة عبر الخادم.</p>";
+            }
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'ar', autoDisplay: false }, 'google_translate_element');
+        }
+
+        function changeLanguage(langCode) {
+            var select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = langCode;
+                select.dispatchEvent(new Event('change'));
+            }
+            document.getElementById("langDropdown").classList.remove("show");
+        }
+
+        function toggleDropdown(e) {
+            if (e) e.stopPropagation();
+            document.getElementById("langDropdown").classList.toggle("show");
+        }
+
+        function filterLanguages() {
+            var input = document.getElementById("langSearch").value.toLowerCase();
+            var links = document.getElementById("langsList").getElementsByTagName("a");
+            for (var i = 0; i < links.length; i++) {
+                var text = links[i].textContent || links[i].innerText;
+                links[i].style.display = text.toLowerCase().indexOf(input) > -1 ? "" : "none";
+            }
+        }
+
+        function toggleTheme() {
+            var currentTheme = document.documentElement.getAttribute("data-theme");
+            document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+        }
+
+        document.addEventListener("click", () => {
+            document.getElementById("langDropdown")?.classList.remove("show");
+        });
+
+        window.addEventListener('load', fetchArticlesFromSanity);
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
