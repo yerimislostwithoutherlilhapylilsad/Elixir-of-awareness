@@ -6,7 +6,13 @@
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-
+        :root {
+    --bg-gradient: linear-gradient(135deg, #0b0712, #180d28);
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(168, 85, 247, 0.25);
+    --text-main: #f3e8ff;
+    --text-sub: #a855f7;
+    --accent-purple: #9333ea;
     --accent-purple-hover: #7e22ce;
     --msg-user-bg: linear-gradient(135deg, #a855f7, #9333ea);
     --msg-other-bg: rgba(255, 255, 255, 0.06);
