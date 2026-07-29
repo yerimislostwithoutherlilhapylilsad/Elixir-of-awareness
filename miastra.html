@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elixir of Awareness - Miastra</title>
+<link rel="icon" type="image/png" href="aw.png">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background 0.3s, color 0.3s; }
+:root { --bg-gradient: linear-gradient(135deg, #0f171e, #080d12); --text-main: #ffffff; --text-sub: #b0bec5; --box-bg: rgba(255, 255, 255, 0.06); --box-border: rgba(255, 255, 255, 0.15); }
+[data-theme="light"] { --bg-gradient: linear-gradient(135deg, #eef2f5, #cfd8dc); --text-main: #1a252f; --text-sub: #546e7a; --box-bg: rgba(255, 255, 255, 0.8); --box-border: rgba(0, 0, 0, 0.1); }
+
+body { background: var(--bg-gradient); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 40px 20px; }
+
+.top-bar { display: flex; width: 100%; max-width: 1100px; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.left-controls { display: flex; gap: 12px; align-items: center; }
+.awareness-logo { height: 40px; border-radius: 8px; }
+.top-bar-btn { background: var(--box-bg); border: 1px solid var(--box-border); color: var(--text-main); padding: 10px 18px; border-radius: 12px; cursor: pointer; font-weight: 600; text-decoration: none; }
+#authBtn { background: linear-gradient(90deg, #27ae60, #2ecc71); color: #fff; border: none; }
+
+.header-box { background: var(--box-bg); border: 1px solid var(--box-border); border-bottom: 5px solid #ff6600; padding: 40px; text-align: center; border-radius: 24px; max-width: 800px; width: 100%; margin-bottom: 40px; }
+.header-box h1 { font-size: 3.2rem; color: #ff7300; margin-bottom: 15px; }
+.header-box p { font-size: 1.25rem; color: #00ff66; font-weight: 500; }
+
+.cards-container { display: flex; gap: 25px; max-width: 1100px; width: 100%; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.card-link { text-decoration: none; display: flex; flex: 1; min-width: 280px; color: inherit; }
+.card { background: linear-gradient(135deg, rgba(40, 167, 69, 0.25) 0%, var(--box-bg) 50%, rgba(255, 102, 0, 0.25) 100%); border: 2px solid var(--box-border); border-radius: 24px; padding: 35px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: all 0.4s; }
+.card:hover { transform: translateY(-12px); border-color: #00ff66; }
+.card h2 { font-size: 1.7rem; margin-bottom: 15px; }
+.card p { color: var(--text-sub); margin-bottom: 20px; }
+.card-img { max-width: 100%; height: 140px; object-fit: contain; }
+
+.action-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+.renrei-btn { background: linear-gradient(90deg, #ff6600, #ff8533); color: #fff; text-decoration: none; padding: 14px 35px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; }
+.chat-btn { background: linear-gradient(90deg, #2980b9, #3498db); color: #fff; text-decoration: none; padding: 14px 35px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4); }
+
+/* ✨ الصندوق البديل الكبير الخاص بـ ميسترا (أزرق وسيان) */
+.admin-big-box { 
+    width: 100%; 
+    max-width: 800px; 
+    background: linear-gradient(135deg, rgba(41, 128, 185, 0.18), rgba(26, 188, 156, 0.08)); 
+    border: 2px solid #2980b9; 
+    box-shadow: 0 0 20px rgba(41, 128, 185, 0.25);
+    border-radius: 24px; 
+    padding: 35px; 
+    margin-bottom: 50px; 
+    text-align: center;
+}
+.welcome-msg {
+    font-size: 1.4rem;
+    color: #00e5ff; /* سيان/أزرق فاتح */
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.sub-welcome {
+    font-size: 1.05rem;
+    color: #b2ebf2;
+    font-style: italic;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    padding-bottom: 15px;
+}
+.feed-header {
+    text-align: right;
+    font-size: 1.15rem;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.feed-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-right: 4px solid #2980b9;
+    border-radius: 14px;
+    padding: 15px 20px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.feed-text { color: #ffffff; font-size: 0.95rem; }
+.feed-time { color: #00e5ff; font-size: 0.8rem; }
+
+.footer-container { text-align: center; width: 100%; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--box-border); }
+.support-phrase { color: #00ff66; font-style: italic; margin-bottom: 10px; }
+.copyright { font-size: 0.9rem; color: var(--text-sub); }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+    <button id="authBtn" class="top-bar-btn" style="border-color: #00e5ff;">أدمن ميسترا ✨</button>
+    <div class="left-controls">
+        <button class="top-bar-btn" onclick="toggleTheme()">داكن/المضيء</button>
+        <img src="aw.png" alt="Awareness" class="awareness-logo">
+    </div>
+</div>
+
+<div class="header-box">
+    <h1>Elixir of Awareness</h1>
+    <p>الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.</p>
+</div>
+
+<div class="cards-container">
+    <a href="support.html" class="card-link">
+        <div class="card">
+            <h2 style="color: #00ff66;">الدعم النفسي</h2>
+            <p>إعرف المزيد عن الدعم النفسي وطرق التعامل معه.</p>
+            <img src="ms.png" alt="Card 1" class="card-img">
+        </div>
+    </a>
+    <a href="social.html" class="card-link">
+        <div class="card">
+            <h2>قضايا اجتماعية</h2>
+            <p>قضايا اجتماعية ، لمعرفة الحقيقة و كيفية التعامل</p>
+            <img src="social.png" alt="Card 2" class="card-img">
+        </div>
+    </a>
+    <a href="info.html" class="card-link">
+        <div class="card">
+            <h2 style="color: #ff7300;">الاضطرابات والأمراض النادرة</h2>
+            <p>لإدراك المزيد عن الامراض و الاضطرابات الغير شائعة</p>
+            <img src="d.png" alt="Card 3" class="card-img">
+        </div>
+    </a>
+</div>
+
+<div class="action-buttons">
+    <a href="https://awakingrenrei57.netlify.app/" target="_blank" class="renrei-btn">موقعنا RenRei</a>
+    <a href="chat-miastra.html" class="chat-btn">💬 الذهاب للشات المباشر</a>
+</div>
+
+<div class="admin-big-box">
+    <div class="welcome-msg">أهلاً بكِ مجدداً يا ميسترا ✨</div>
+    <div class="sub-welcome">«حضوركِ يمنح المكان هدوءاً وحكمة لا تُقدّر بثمن»</div>
+    
+    <div class="feed-header">🔔 أحدث التحديثات والرسائل المباشرة:</div>
+    <div class="feed-container" id="miastraFeed">
+        <div class="feed-item"><span class="feed-text">جاري تحميل التحديثات...</span></div>
+    </div>
+</div>
+
+<div class="footer-container">
+    <p class="support-phrase">الحق حق وناكر الحق مجرم ، وداعم المجرم اكثر اجراما</p>
+    <p class="copyright">&copy; 2026 جميع الحقوق محفوظة لـ Miastra و Siraisia</p>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+  // إعدادات الفايربيس
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4ep41mqm5wnBilB15mE9606yI8y5sdMg",
+    authDomain: "elixir-of-awareness.firebaseapp.com",
+    databaseURL: "https://elixir-of-awareness-default-rtdb.firebaseio.com",
+    projectId: "elixir-of-awareness",
+    storageBucket: "elixir-of-awareness.firebasestorage.app",
+    messagingSenderId: "464593540782",
+    appId: "1:464593540782:web:0650c291868867b5e77f3f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // مرجع المسار الخاص برسائل وتحديثات ميسترا
+  const messagesRef = ref(db, "chats/miastra");
+  const container = document.getElementById("miastraFeed");
+  let isFirstLoad = true;
+
+  // جلب التحديثات فور إرسالها في شات ميسترا
+  onChildAdded(messagesRef, (snapshot) => {
+    if (isFirstLoad) {
+      container.innerHTML = ""; // مسح نص التحميل
+      isFirstLoad = false;
+    }
+    const data = snapshot.val();
+    const item = document.createElement("div");
+    item.className = "feed-item";
+    
+    const messageText = data.text || data.message || "رسالة جديدة وصلتك";
+    const messageTime = data.time || new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+
+    item.innerHTML = `
+        <span class="feed-text">${messageText}</span>
+        <span class="feed-time">${messageTime}</span>
+    `;
+    container.prepend(item);
+  });
+  window.toggleTheme = function() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+  };
+</script>
+</body>
+</html>
