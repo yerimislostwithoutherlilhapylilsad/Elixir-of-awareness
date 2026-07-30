@@ -96,48 +96,55 @@ body { background-color: var(--bg-main); color: var(--text-primary); min-height:
 </div>
 
 <script>
-var activeUser = null;
-var prevChatsJSON = "";
+var curUser = null;
+var cacheState = "";
+
+function fetchChats() {
+    var stored = localStorage.getItem('siraisia_chats');
+    return stored ? JSON.parse(stored) : {};
+}
 
 function loadUsersList() {
-    var rawData = localStorage.getItem('siraisia_chats');
-    var chats = rawData ? JSON.parse(rawData) : {};
-    var box = document.getElementById('usersListContainer');
-    var ids = Object.keys(chats);
+    var data = fetchChats();
+    var listElem = document.getElementById('usersListContainer');
+    var keys = [];
+    
+    for (var k in data) {
+        if (data.hasOwnProperty(k)) keys.push(k);
+    }
 
-    if (ids.length === 0) {
-        box.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 25px;">لا توجد محادثات حتي الآن</div>';
+    if (keys.length === 0) {
+        listElem.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 25px;">لا توجد محادثات حتي الآن</div>';
         return;
     }
 
-    var listHtml = '';
-    for (var i = 0; i < ids.length; i++) {
-        var id = ids[i];
-        var u = chats[id];
-        var msgs = u.messages || [];
-        var lastMsg = msgs.length > 0 ? msgs[msgs.length - 1].text : 'لا توجد رسائل';
-        var name = u.name || 'مستخدم';
-        var isActive = (id === activeUser) ? 'active' : '';
+    var str = '';
+    for (var n = 0; n < keys.length; n++) {
+        var id = keys[n];
+        var item = data[id];
+        var arr = item.messages || [];
+        var txt = arr.length ? arr[arr.length - 1].text : 'لا توجد رسائل';
+        var username = item.name || 'مستخدم';
+        var cls = (id === curUser) ? 'user-card active' : 'user-card';
 
-        listHtml += '<div class="user-card ' + isActive + '" onclick="selectUser(\'' + id + '\')">' +
-            '<div class="user-avatar">' + name.charAt(0).toUpperCase() + '</div>' +
+        str += '<div class="' + cls + '" onclick="selectUser(\'' + id + '\')">' +
+            '<div class="user-avatar">' + username.charAt(0).toUpperCase() + '</div>' +
             '<div class="user-info">' +
-                '<div class="user-name">' + name + '</div>' +
-                '<div class="user-last-msg">' + lastMsg + '</div>' +
+                '<div class="user-name">' + username + '</div>' +
+                '<div class="user-last-msg">' + txt + '</div>' +
             '</div>' +
         '</div>';
     }
 
-    box.innerHTML = listHtml;
+    listElem.innerHTML = str;
 }
 
-function selectUser(id) {
-    activeUser = id;
-    markAsSeen(id);
+function selectUser(usrId) {
+    curUser = usrId;
+    markAsSeen(usrId);
 
-    var rawData = localStorage.getItem('siraisia_chats');
-    var chats = rawData ? JSON.parse(rawData) : {};
-    var u = chats[id];
+    var data = fetchChats();
+    var u = data[usrId];
 
     if (u) {
         document.getElementById('activeUserName').innerText = u.name || 'مستخدم';
@@ -152,21 +159,19 @@ function selectUser(id) {
     }
 }
 
-function markAsSeen(id) {
-    var rawData = localStorage.getItem('siraisia_chats');
-    var chats = rawData ? JSON.parse(rawData) : {};
-    
-    if (chats[id] && chats[id].messages) {
-        var isChanged = false;
-        var list = chats[id].messages;
-        for (var i = 0; i < list.length; i++) {
-            if (list[i].sender === 'user' && !list[i].seen) {
-                list[i].seen = true;
-                isChanged = true;
+function markAsSeen(usrId) {
+    var data = fetchChats();
+    if (data[usrId] && data[usrId].messages) {
+        var updated = false;
+        var msgs = data[usrId].messages;
+        for (var idx = 0; idx < msgs.length; idx++) {
+            if (msgs[idx].sender === 'user' && !msgs[idx].seen) {
+                msgs[idx].seen = true;
+                updated = true;
             }
         }
-        if (isChanged) {
-            localStorage.setItem('siraisia_chats', JSON.stringify(chats));
+        if (updated) {
+            localStorage.setItem('siraisia_chats', JSON.stringify(data));
         }
     }
 }
@@ -176,68 +181,66 @@ function backToUsersList() {
     document.getElementById('chatContainer').classList.remove('mobile-show');
 }
 
-function renderAdminChat(force) {
-    if (!activeUser) return;
+function renderAdminChat(forceRefresh) {
+    if (!curUser) return;
 
-    markAsSeen(activeUser);
+    markAsSeen(curUser);
 
-    var rawData = localStorage.getItem('siraisia_chats');
-    var chats = rawData ? JSON.parse(rawData) : {};
-    var u = chats[activeUser];
-    var chatBox = document.getElementById('adminChatMessages');
+    var data = fetchChats();
+    var target = data[curUser];
+    var box = document.getElementById('adminChatMessages');
 
-    if (!u || !u.messages) return;
+    if (!target || !target.messages) return;
 
-    var currentJSON = JSON.stringify(u.messages);
-    if (!force && currentJSON === prevChatsJSON) return;
-    prevChatsJSON = currentJSON;
+    var jsonStr = JSON.stringify(target.messages);
+    if (!forceRefresh && jsonStr === cacheState) return;
+    cacheState = jsonStr;
 
-    var html = '';
-    for (var i = 0; i < u.messages.length; i++) {
-        var m = u.messages[i];
-        var msgType = (m.sender === 'user') ? 'received' : 'sent';
-        html += '<div class="message-item ' + msgType + '">' +
-            '<div class="msg-bubble">' + m.text + '<span class="msg-time">' + m.time + '</span></div>' +
+    var outHtml = '';
+    for (var j = 0; j < target.messages.length; j++) {
+        var entry = target.messages[j];
+        var side = (entry.sender === 'user') ? 'received' : 'sent';
+        outHtml += '<div class="message-item ' + side + '">' +
+            '<div class="msg-bubble">' + entry.text + '<span class="msg-time">' + entry.time + '</span></div>' +
         '</div>';
     }
 
-    chatBox.innerHTML = html;
-    chatBox.scrollTop = chatBox.scrollHeight;
+    box.innerHTML = outHtml;
+    box.scrollTop = box.scrollHeight;
 }
 
 function sendAdminReply() {
-    if (!activeUser) {
+    if (!curUser) {
         alert("اختر المحادثة أولا");
         return;
     }
 
-    var inputField = document.getElementById('adminMessageInput');
-    var msgText = inputField.value.trim();
+    var el = document.getElementById('adminMessageInput');
+    var val = el.value.trim();
 
-    if (msgText !== '') {
-        var now = new Date();
-        var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (val !== '') {
+        var d = new Date();
+        var t = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        var rawData = localStorage.getItem('siraisia_chats');
-        var chats = rawData ? JSON.parse(rawData) : {};
+        var data = fetchChats();
 
-        if (chats[activeUser]) {
-            chats[activeUser].messages.push({
+        if (data[curUser]) {
+            data[curUser].messages.push({
                 sender: 'Siraisia',
-                text: msgText,
-                time: timeStr
+                text: val,
+                time: t
             });
 
-            localStorage.setItem('siraisia_chats', JSON.stringify(chats));
+            localStorage.setItem('siraisia_chats', JSON.stringify(data));
             renderAdminChat(true);
             loadUsersList();
-            inputField.value = '';
+            el.value = '';
         }
     }
 }
 
-function handleAdminKeyPress(e) {
-    if (e.key === 'Enter') {
+function handleAdminKeyPress(evt) {
+    if (evt.key === 'Enter') {
         sendAdminReply();
     }
 }
@@ -245,13 +248,13 @@ function handleAdminKeyPress(e) {
 window.addEventListener('storage', function(e) {
     if (e.key === 'siraisia_chats') {
         loadUsersList();
-        if (activeUser) renderAdminChat();
+        if (curUser) renderAdminChat();
     }
 });
 
 setInterval(function() {
     loadUsersList();
-    if (activeUser) renderAdminChat();
+    if (curUser) renderAdminChat();
 }, 500);
 
 loadUsersList();
