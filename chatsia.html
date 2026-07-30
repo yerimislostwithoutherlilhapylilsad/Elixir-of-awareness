@@ -20,39 +20,39 @@ function googleTranslateElementInit() {
 
 <div id="google_translate_element"></div>
 
-<div class="top-bar">
-    <a href="index.html" class="top-btn" id="homeBtn"> العودة للرئيسية</a>
+<header class="navbar">
+    <a href="index.html" class="nav-btn" id="homeBtn">العودة للرئيسية</a>
 
-    <div class="controls-group">
+    <div class="nav-controls">
         <div class="lang-dropdown-container notranslate">
-            <button class="top-btn" onclick="toggleLangDropdown()">Language\اللغة <span id="langLabel">اللغة</span></button>
-            <div class="lang-dropdown notranslate" id="langDropdown"></div>
+            <button class="nav-btn" onclick="toggleLangDropdown()">Language\اللغة <span id="langLabel">اللغة</span></button>
+            <div class="lang-menu notranslate" id="langDropdown"></div>
         </div>
 
-        <button class="top-btn" onclick="toggleTheme()">theme\ المظهر</button>
+        <button class="nav-btn" onclick="toggleTheme()">theme\ المظهر</button>
     </div>
-</div>
+</header>
 
-<div class="main-container">
-    <div class="quote-card">
-        <div class="card-title" id="cardCategory">ألكسير الوعي</div>
-        <div class="quote-text" id="quoteText">نصيحة ألكسير الوعي</div>
-        <button class="gen-btn" id="genBtn" onclick="generateQuote()">الحصول على أمل جديد</button>
-    </div>
+<main class="content-wrapper">
+    <section class="inspiration-card">
+        <div class="card-badge" id="cardCategory">ألكسير الوعي</div>
+        <div class="card-quote" id="quoteText">نصيحة ألكسير الوعي</div>
+        <button class="action-btn" id="genBtn" onclick="generateQuote()">الحصول على أمل جديد</button>
+    </section>
 
-    <div class="chat-box">
+    <section class="chat-container">
         <div class="chat-header">
-            <div class="profile-info">
-                <div class="avatar-container">
-                    <div class="profile-avatar-icon">Sia</div>
+            <div class="user-meta">
+                <div class="avatar-wrapper">
+                    <div class="avatar-icon">Sia</div>
                     <span class="status-online"></span>
                 </div>
                 <h3 id="chatTitle">جلسة المحادثة المباشرة مع <span class="notranslate">Siraisia</span></h3>
             </div>
 
-            <div class="header-actions">
-                <button class="edit-profile-btn" onclick="openProfileModal()"> الملف الشخصي</button>
-                <div class="search-container">
+            <div class="chat-toolbar">
+                <button class="btn-secondary" onclick="openProfileModal()">الملف الشخصي</button>
+                <div class="search-box">
                     <span class="search-icon">🔍</span>
                     <input type="text" class="search-input" id="chatSearch" placeholder="بحث..." oninput="searchMessages()">
                 </div>
@@ -60,11 +60,11 @@ function googleTranslateElementInit() {
         </div>
 
         <div class="chat-messages" id="chatMessages">
-            <div class="message-wrapper received">
+            <div class="message-item received">
                 <div class="msg-avatar-icon">Sia</div>
-                <div class="message">
+                <div class="message-bubble">
                     <span class="msg-content">أهلا بك في ملاذك الآمن، قم بإرسال ما تشاء ، سنكون بإنتظارك</span>
-                    <div class="msg-footer">
+                    <div class="msg-meta">
                         <span class="time">13:57</span>
                     </div>
                 </div>
@@ -75,32 +75,32 @@ function googleTranslateElementInit() {
             <input type="text" id="messageInput" placeholder="اكتب رسالتك بالتفصيل هنا..." onkeypress="handleKeyPress(event)">
             <button class="send-btn" id="sendBtn" onclick="sendMessage()">إرسال الرسالة</button>
         </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <div class="modal-overlay" id="profileModal">
-    <div class="modal-content">
+    <div class="modal-card">
         <div class="modal-header">
             <h3>تعديل البيانات الشخصية</h3>
-            <button class="close-modal" onclick="closeProfileModal()">✕</button>
+            <button class="close-btn" onclick="closeProfileModal()">✕</button>
         </div>
 
-        <div class="profile-preview-area">
+        <div class="avatar-preview-box">
             <div class="preview-avatar" id="previewAvatar">A star of our Elixir</div>
-            <span style="font-size:0.8rem; opacity:0.7;"> الصورة الحالية</span>
+            <span class="preview-label">الصورة الحالية</span>
         </div>
 
-        <div class="form-group">
+        <div class="field-group">
             <label>اسم المستخدم:</label>
             <input type="text" id="userNameInput" placeholder="أدخل اسمك هنا..." value="المستخدم">
         </div>
 
-        <div class="form-group">
+        <div class="field-group">
             <label>تغيير الصورة الشخصية:</label>
             <input type="file" id="userAvatarInput" accept="image/*" onchange="handleImageUpload(event)">
         </div>
 
-        <button class="save-profile-btn" onclick="saveProfileSettings()">حفظ</button>
+        <button class="save-btn" onclick="saveProfileSettings()">حفظ</button>
     </div>
 </div>
 
@@ -265,7 +265,7 @@ function saveProfileSettings() {
         currentUser.avatarText = newName.charAt(0).toUpperCase();
     }
     
-    const userAvatars = document.querySelectorAll('.message-wrapper.sent .msg-avatar-icon');
+    const userAvatars = document.querySelectorAll('.message-item.sent .msg-avatar-icon');
     userAvatars.forEach(avatar => {
         applyAvatarStyles(avatar);
     });
@@ -293,17 +293,17 @@ function sendMessage() {
         const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         const wrapper = document.createElement('div');
-        wrapper.className = 'message-wrapper sent';
+        wrapper.className = 'message-item sent';
 
         const avatarDiv = document.createElement('div');
         avatarDiv.className = 'msg-avatar-icon user-msg-avatar';
         applyAvatarStyles(avatarDiv);
 
         const msgDiv = document.createElement('div');
-        msgDiv.className = 'message';
+        msgDiv.className = 'message-bubble';
         msgDiv.innerHTML = `
             <span class="msg-content">${text}</span>
-            <div class="msg-footer">
+            <div class="msg-meta">
                 <span class="time">${timeString}</span>
             </div>
         `;
@@ -319,13 +319,13 @@ function sendMessage() {
             isFirstMessageSent = true;
             setTimeout(() => {
                 const autoWrapper = document.createElement('div');
-                autoWrapper.className = 'message-wrapper received';
-                  const autoText ="مبسوطة بوجودك هنا، يا ريت تحكي كل اللي ف قلبك ، وهرد بأسرع وقت ممكن إن شاء الله";                
+                autoWrapper.className = 'message-item received';
+                const autoText = "مبسوطة بوجودك هنا، يا ريت تحكي كل اللي ف قلبك ، وهرد بأسرع وقت ممكن إن شاء الله";                
                 autoWrapper.innerHTML = `
                     <div class="msg-avatar-icon">M</div>
-                    <div class="message">
+                    <div class="message-bubble">
                         <span class="msg-content">${autoText}</span>
-                        <div class="msg-footer">
+                        <div class="msg-meta">
                             <span class="time">${timeString}</span>
                         </div>
                     </div>
@@ -339,10 +339,10 @@ function sendMessage() {
 
 function searchMessages() {
     const query = document.getElementById('chatSearch').value.toLowerCase().trim();
-    const wrappers = document.querySelectorAll('.message-wrapper');
+    const wrappers = document.querySelectorAll('.message-item');
 
     wrappers.forEach(wrapper => {
-        const text = wrapper.querySelector('.message').innerText.toLowerCase();
+        const text = wrapper.querySelector('.message-bubble').innerText.toLowerCase();
         if (text.includes(query)) {
             wrapper.classList.remove('hidden');
         } else {
@@ -358,7 +358,7 @@ function handleKeyPress(event) {
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.top-btn')) {
+    if (!event.target.matches('.nav-btn')) {
         const dropdown = document.getElementById("langDropdown");
         if (dropdown && dropdown.classList.contains('show')) {
             dropdown.classList.remove('show');
