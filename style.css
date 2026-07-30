@@ -122,7 +122,44 @@ body { top: 0px !important; }
     padding: 40px;
     text-align: center;
     border-radius: 24px;
-    bic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.header-box h1 { font-size: 3.2rem; color: #ff7300; margin-bottom: 15px; }
+.header-box p { font-size: 1.25rem; color: #00ff66; font-weight: 500; }
+
+.articles-container {
+    display: flex;
+    gap: 25px;
+    max-width: 1100px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.article-link {
+    text-decoration: none;
+    display: flex;
+    width: calc(33.333% - 17px);
+    min-width: 280px;
+    color: inherit;
+}
+
+.article-card {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.15) 0%, var(--box-bg) 50%, rgba(255, 102, 0, 0.15) 100%);
+    border: 2px solid var(--box-border);
+    border-radius: 24px;
+    padding: 30px;
+    width: 100%;
+    text-align: right;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .article-card:hover {
