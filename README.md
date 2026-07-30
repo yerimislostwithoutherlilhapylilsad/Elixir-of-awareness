@@ -30,7 +30,22 @@ First logging in , Changin the language , the theme, like tha
  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/faa0a670-ed74-4761-87e6-73777d69da0f" />
 that when they don't have an acc but they can chat as a vistor 
 this is Mia's chat <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1667153a-d22a-418d-bd2a-eef6580be656" />
-this is Sia's 
+this is when one of the admins log in:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/48b34a69-cde9-4bda-99b0-d7188771df7c" />
+this is Mia's admin chat
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e24d9eae-f6eb-40e7-ac8d-3e65a0300a39" />
+and Sia's admin chat :
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c7b29354-b216-44f6-b4c9-d4ecdcde935e" />
+
+this is the cards from inside" there are no topics til now"
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5b6d4101-7dd1-4bd7-8959-2c41fcb84709" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ac19bebb-20ce-46b9-990f-c5d6483379a0" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/847239fe-3bb5-49bb-b5c9-df6af1b04e43" />
+
+
+
+
+
 
 
 
