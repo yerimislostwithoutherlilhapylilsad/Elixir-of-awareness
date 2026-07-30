@@ -3,201 +3,454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elixir of Awareness - Miastra</title>
-<link rel="icon" type="image/png" href="aw.png">
+<title>Miastra 's world</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background 0.3s, color 0.3s; }
-:root { --bg-gradient: linear-gradient(135deg, #0f171e, #080d12); --text-main: #ffffff; --text-sub: #b0bec5; --box-bg: rgba(255, 255, 255, 0.06); --box-border: rgba(255, 255, 255, 0.15); }
-[data-theme="light"] { --bg-gradient: linear-gradient(135deg, #eef2f5, #cfd8dc); --text-main: #1a252f; --text-sub: #546e7a; --box-bg: rgba(255, 255, 255, 0.8); --box-border: rgba(0, 0, 0, 0.1); }
+:root {
+    --bg-main: #060d1e;              
+    --card-bg: rgba(15, 23, 42, 0.95);     
+    --accent-blue: #2563eb;             
+    --accent-blue-bright: #3b82f6;        
+    --accent-green: #10b981;              
+    --accent-green-bright: #22c55e;   
+    --accent-yellow: #facc15;           
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(59, 130, 246, 0.25);
+    --msg-user-bg: #1e293b;             
+    --msg-admin-bg: #1d4ed8;             
 
-body { background: var(--bg-gradient); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 40px 20px; }
-
-.top-bar { display: flex; width: 100%; max-width: 1100px; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.left-controls { display: flex; gap: 12px; align-items: center; }
-.awareness-logo { height: 40px; border-radius: 8px; }
-.top-bar-btn { background: var(--box-bg); border: 1px solid var(--box-border); color: var(--text-main); padding: 10px 18px; border-radius: 12px; cursor: pointer; font-weight: 600; text-decoration: none; }
-#authBtn { background: linear-gradient(90deg, #27ae60, #2ecc71); color: #fff; border: none; }
-
-.header-box { background: var(--box-bg); border: 1px solid var(--box-border); border-bottom: 5px solid #ff6600; padding: 40px; text-align: center; border-radius: 24px; max-width: 800px; width: 100%; margin-bottom: 40px; }
-.header-box h1 { font-size: 3.2rem; color: #ff7300; margin-bottom: 15px; }
-.header-box p { font-size: 1.25rem; color: #00ff66; font-weight: 500; }
-
-.cards-container { display: flex; gap: 25px; max-width: 1100px; width: 100%; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-.card-link { text-decoration: none; display: flex; flex: 1; min-width: 280px; color: inherit; }
-.card { background: linear-gradient(135deg, rgba(40, 167, 69, 0.25) 0%, var(--box-bg) 50%, rgba(255, 102, 0, 0.25) 100%); border: 2px solid var(--box-border); border-radius: 24px; padding: 35px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: all 0.4s; }
-.card:hover { transform: translateY(-12px); border-color: #00ff66; }
-.card h2 { font-size: 1.7rem; margin-bottom: 15px; }
-.card p { color: var(--text-sub); margin-bottom: 20px; }
-.card-img { max-width: 100%; height: 140px; object-fit: contain; }
-
-.action-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
-.renrei-btn { background: linear-gradient(90deg, #ff6600, #ff8533); color: #fff; text-decoration: none; padding: 14px 35px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; }
-.chat-btn { background: linear-gradient(90deg, #2980b9, #3498db); color: #fff; text-decoration: none; padding: 14px 35px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4); }
-
-/* ✨ الصندوق البديل الكبير الخاص بـ ميسترا (أزرق وسيان) */
-.admin-big-box { 
-    width: 100%; 
-    max-width: 800px; 
-    background: linear-gradient(135deg, rgba(41, 128, 185, 0.18), rgba(26, 188, 156, 0.08)); 
-    border: 2px solid #2980b9; 
-    box-shadow: 0 0 20px rgba(41, 128, 185, 0.25);
-    border-radius: 24px; 
-    padding: 35px; 
-    margin-bottom: 50px; 
-    text-align: center;
 }
-.welcome-msg {
-    font-size: 1.4rem;
-    color: #00e5ff; /* سيان/أزرق فاتح */
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.sub-welcome {
-    font-size: 1.05rem;
-    color: #b2ebf2;
-    font-style: italic;
-    margin-bottom: 25px;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
-    padding-bottom: 15px;
-}
-.feed-header {
-    text-align: right;
-    font-size: 1.15rem;
-    color: #e0e0e0;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-.feed-container {
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-height: 300px;
-    overflow-y: auto;
 }
-.feed-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    border-right: 4px solid #2980b9;
-    border-radius: 14px;
-    padding: 15px 20px;
-    text-align: right;
+
+.top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 25px;
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 2px solid var(--accent-green);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
 }
-.feed-text { color: #ffffff; font-size: 0.95rem; }
-.feed-time { color: #00e5ff; font-size: 0.8rem; }
 
-.footer-container { text-align: center; width: 100%; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--box-border); }
-.support-phrase { color: #00ff66; font-style: italic; margin-bottom: 10px; }
-.copyright { font-size: 0.9rem; color: var(--text-sub); }
+.top-btn {
+    background: rgba(37, 99, 235, 0.15);
+    color: var(--accent-yellow);
+    border: 1px solid var(--accent-yellow);
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.top-btn:hover {
+    background: var(--accent-yellow);
+    color: var(--bg-main);
+}
+
+.main-wrapper {
+    display: flex;
+    gap: 20px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 20px;
+    flex: 1;
+    height: calc(100vh - 110px);
+}
+
+.sidebar {
+    width: 340px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-title { 
+    color: var(--accent-yellow); 
+    font-size: 1.25rem; 
+    font-weight: bold; 
+    text-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
+}
+
+.users-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.user-card {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s ease;
+}
+
+.user-card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.user-card.active {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--accent-green-bright);
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 1px solid var(--accent-yellow);
+}
+
+.user-info { flex: 1; overflow: hidden; }
+.user-name { font-weight: bold; color: var(--accent-yellow); }
+.user-last-msg { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.chat-container {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.chat-header {
+    padding: 18px 25px;
+    background: rgba(37, 99, 235, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#activeUserName {
+    color: var(--accent-yellow);
+}
+
+.mobile-back-btn {
+    display: none;
+    background: var(--accent-blue);
+    border: none;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-item { display: flex; gap: 12px; max-width: 80%; }
+.message-item.received { align-self: flex-start; }
+.message-item.sent { align-self: flex-end; flex-direction: row-reverse; }
+
+.msg-bubble {
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 0.98rem;
+    position: relative;
+    word-break: break-word;
+}
+
+.message-item.received .msg-bubble { 
+    background: var(--msg-user-bg); 
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #fff;
+    border-bottom-right-radius: 4px; 
+}
+
+.message-item.sent .msg-bubble { 
+    background: linear-gradient(135deg, var(--accent-blue), #1e40af); 
+    color: #fff; 
+    border: 1px solid var(--accent-yellow);
+    border-bottom-left-radius: 4px; 
+}
+
+.msg-time { display: block; font-size: 0.72rem; margin-top: 5px; color: var(--text-secondary); }
+
+.chat-input-area {
+    padding: 15px 20px;
+    background: rgba(37, 99, 235, 0.05);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 12px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: rgba(6, 13, 30, 0.6);
+    border: 1px solid var(--accent-green);
+    border-radius: 12px;
+    padding: 12px 18px;
+    color: #fff;
+    outline: none;
+}
+
+.chat-input-area input:focus {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.send-btn {
+    background: linear-gradient(135deg, var(--accent-green), #059669);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.send-btn:hover { 
+    background: linear-gradient(135deg, var(--accent-yellow), #d97706);
+    color: var(--bg-main);
+}
+
+@media (max-width: 768px) {
+    .main-wrapper { flex-direction: column; height: calc(100vh - 90px); margin: 10px auto; padding: 0 10px; }
+    .sidebar { width: 100%; height: 100%; }
+    .chat-container { width: 100%; height: 100%; display: none; }
+    .chat-container.mobile-show { display: flex; }
+    .sidebar.mobile-hide { display: none; }
+    .mobile-back-btn { display: inline-block; }
+}
 </style>
 </head>
+
 <body>
 
 <div class="top-bar">
-    <button id="authBtn" class="top-bar-btn" style="border-color: #00e5ff;">أدمن ميسترا ✨</button>
-    <div class="left-controls">
-        <button class="top-bar-btn" onclick="toggleTheme()">داكن/المضيء</button>
-        <img src="aw.png" alt="Awareness" class="awareness-logo">
+    <a href="index.html" class="top-btn"> الصفحة الرئيسية</a>
+    <button class="top-btn" style="border-color: var(--accent-green); color: var(--accent-green);">Mia'chat</button>
+</div>
+
+<div class="main-wrapper">
+    <div class="sidebar" id="sidebarArea">
+        <div class="sidebar-header">
+            <span class="sidebar-title">المحادثات الواردة</span>
+        </div>
+        <div class="users-list" id="usersListContainer"></div>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <button class="mobile-back-btn" onclick="backToUsersList()"> المحادثات</button>
+            <h3 id="activeUserName">اختر محادثة للبدء</h3>
+        </div>
+
+        <div class="chat-messages" id="adminChatMessages">
+            <div style="text-align: center; color: var(--text-secondary); margin-top: 60px;">
+                اختر محادثة من القائمة الجانبية لقراءة واستلام الرسائل
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="adminMessageInput" placeholder="اكتبي ردك يا مياسترا..." onkeypress="handleAdminKeyPress(event)">
+            <button class="send-btn" onclick="sendAdminReply()">إرسال الرد</button>
+        </div>
     </div>
 </div>
 
-<div class="header-box">
-    <h1>Elixir of Awareness</h1>
-    <p>الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.</p>
-</div>
+<script>
+let selectedUserId = null;
+let lastAdminJSON = "";
 
-<div class="cards-container">
-    <a href="support.html" class="card-link">
-        <div class="card">
-            <h2 style="color: #00ff66;">الدعم النفسي</h2>
-            <p>إعرف المزيد عن الدعم النفسي وطرق التعامل معه.</p>
-            <img src="ms.png" alt="Card 1" class="card-img">
-        </div>
-    </a>
-    <a href="social.html" class="card-link">
-        <div class="card">
-            <h2>قضايا اجتماعية</h2>
-            <p>قضايا اجتماعية ، لمعرفة الحقيقة و كيفية التعامل</p>
-            <img src="social.png" alt="Card 2" class="card-img">
-        </div>
-    </a>
-    <a href="info.html" class="card-link">
-        <div class="card">
-            <h2 style="color: #ff7300;">الاضطرابات والأمراض النادرة</h2>
-            <p>لإدراك المزيد عن الامراض و الاضطرابات الغير شائعة</p>
-            <img src="d.png" alt="Card 3" class="card-img">
-        </div>
-    </a>
-</div>
+function loadUsersList() {
+    const allChats = JSON.parse(localStorage.getItem('miastra_chats')) || {};
+    const container = document.getElementById('usersListContainer');
+    const userIds = Object.keys(allChats);
 
-<div class="action-buttons">
-    <a href="https://awakingrenrei57.netlify.app/" target="_blank" class="renrei-btn">موقعنا RenRei</a>
-    <a href="chat-miastra.html" class="chat-btn">💬 الذهاب للشات المباشر</a>
-</div>
-
-<div class="admin-big-box">
-    <div class="welcome-msg">أهلاً بكِ مجدداً يا ميسترا ✨</div>
-    <div class="sub-welcome">«حضوركِ يمنح المكان هدوءاً وحكمة لا تُقدّر بثمن»</div>
-    
-    <div class="feed-header">🔔 أحدث التحديثات والرسائل المباشرة:</div>
-    <div class="feed-container" id="miastraFeed">
-        <div class="feed-item"><span class="feed-text">جاري تحميل التحديثات...</span></div>
-    </div>
-</div>
-
-<div class="footer-container">
-    <p class="support-phrase">الحق حق وناكر الحق مجرم ، وداعم المجرم اكثر اجراما</p>
-    <p class="copyright">&copy; 2026 جميع الحقوق محفوظة لـ Miastra و Siraisia</p>
-</div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-  // إعدادات الفايربيس
-  const firebaseConfig = {
-    apiKey: "AIzaSyD4ep41mqm5wnBilB15mE9606yI8y5sdMg",
-    authDomain: "elixir-of-awareness.firebaseapp.com",
-    databaseURL: "https://elixir-of-awareness-default-rtdb.firebaseio.com",
-    projectId: "elixir-of-awareness",
-    storageBucket: "elixir-of-awareness.firebasestorage.app",
-    messagingSenderId: "464593540782",
-    appId: "1:464593540782:web:0650c291868867b5e77f3f"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // مرجع المسار الخاص برسائل وتحديثات ميسترا
-  const messagesRef = ref(db, "chats/miastra");
-  const container = document.getElementById("miastraFeed");
-  let isFirstLoad = true;
-
-  // جلب التحديثات فور إرسالها في شات ميسترا
-  onChildAdded(messagesRef, (snapshot) => {
-    if (isFirstLoad) {
-      container.innerHTML = ""; // مسح نص التحميل
-      isFirstLoad = false;
+    if (userIds.length === 0) {
+        container.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 25px;">لا توجد محادثات حتي الآن</div>';
+        return;
     }
-    const data = snapshot.val();
-    const item = document.createElement("div");
-    item.className = "feed-item";
-    
-    const messageText = data.text || data.message || "رسالة جديدة وصلتك";
-    const messageTime = data.time || new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
 
-    item.innerHTML = `
-        <span class="feed-text">${messageText}</span>
-        <span class="feed-time">${messageTime}</span>
-    `;
-    container.prepend(item);
-  });
-  window.toggleTheme = function() {
-    var currentTheme = document.documentElement.getAttribute("data-theme");
-    document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
-  };
+    let html = '';
+    userIds.forEach(uId => {
+        const user = allChats[uId];
+        const lastMsgObj = user.messages && user.messages.length > 0 ? user.messages[user.messages.length - 1] : null;
+        const lastMsgText = lastMsgObj ? lastMsgObj.text : 'لا توجد رسائل';
+        const activeClass = uId === selectedUserId ? 'active' : '';
+
+        html += `
+            <div class="user-card ${activeClass}" onclick="selectUser('${uId}')">
+                <div class="user-avatar">${(user.name || 'U').charAt(0).toUpperCase()}</div>
+                <div class="user-info">
+                    <div class="user-name">${user.name || 'مستخدم'}</div>
+                    <div class="user-last-msg">${lastMsgText}</div>
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+function selectUser(uId) {
+    selectedUserId = uId;
+    markAsSeen(uId);
+
+    const allChats = JSON.parse(localStorage.getItem('chatmia')) || {};
+    const user = allChats[uId];
+    if (user) {
+        document.getElementById('activeUserName').innerText = user.name || 'مستخدم';
+        
+        if (window.innerWidth <= 768) {
+            document.getElementById('sidebarArea').classList.add('mobile-hide');
+            document.getElementById('chatContainer').classList.add('mobile-show');
+        }
+
+        renderAdminChat(true);
+        loadUsersList();
+    }
+}
+
+function markAsSeen(uId) {
+    let allChats = JSON.parse(localStorage.getItem('chatmia')) || {};
+    if (allChats[uId] && allChats[uId].messages) {
+        let updated = false;
+        allChats[uId].messages.forEach(msg => {
+            if (msg.sender === 'user' && !msg.seen) {
+                msg.seen = true;
+                updated = true;
+            }
+        });
+        if (updated) {
+            localStorage.setItem('miastra_chats', JSON.stringify(allChats));
+        }
+    }
+}
+
+function backToUsersList() {
+    document.getElementById('sidebarArea').classList.remove('mobile-hide');
+    document.getElementById('chatContainer').classList.remove('mobile-show');
+}
+
+function renderAdminChat(force = false) {
+    if (!selectedUserId) return;
+
+    markAsSeen(selectedUserId);
+
+    const allChats = JSON.parse(localStorage.getItem('miastra_chats')) || {};
+    const user = allChats[selectedUserId];
+    const messagesContainer = document.getElementById('adminChatMessages');
+
+    if (!user || !user.messages) return;
+
+    const currentJSON = JSON.stringify(user.messages);
+    if (!force && currentJSON === lastAdminJSON) return;
+    lastAdminJSON = currentJSON;
+
+    messagesContainer.innerHTML = '';
+
+    user.messages.forEach(msg => {
+        const wrapper = document.createElement('div');
+        if (msg.sender === 'user') {
+            wrapper.className = 'message-item received';
+            wrapper.innerHTML = `<div class="msg-bubble">${msg.text}<span class="msg-time">${msg.time}</span></div>`;
+        } else {
+            wrapper.className = 'message-item sent';
+            wrapper.innerHTML = `<div class="msg-bubble">${msg.text}<span class="msg-time">${msg.time}</span></div>`;
+        }
+        messagesContainer.appendChild(wrapper);
+    });
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function sendAdminReply() {
+    if (!selectedUserId) {
+        alert("اختر شات أولا");
+        return;
+    }
+
+    const input = document.getElementById('adminMessageInput');
+    const text = input.value.trim();
+
+    if (text !== '') {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        let allChats = JSON.parse(localStorage.getItem('miastra_chats')) || {};
+        if (allChats[selectedUserId]) {
+            allChats[selectedUserId].messages.push({
+                sender: 'Miastra',
+                text: text,
+                time: timeString
+            });
+            localStorage.setItem('miastra_chats', JSON.stringify(allChats));
+
+            renderAdminChat(true);
+            loadUsersList();
+            input.value = '';
+        }
+    }
+}
+
+function handleAdminKeyPress(event) {
+    if (event.key === 'Enter') sendAdminReply();
+}
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'miastra_chats') {
+        loadUsersList();
+        if (selectedUserId) renderAdminChat();
+    }
+});
+
+setInterval(() => {
+    loadUsersList();
+    if (selectedUserId) renderAdminChat();
+}, 500);
+
+loadUsersList();
 </script>
+
 </body>
 </html>
