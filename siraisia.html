@@ -17,239 +17,40 @@
     --msg-user-bg: #1e112a;                
     --msg-admin-bg: #7e22ce;             
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-
-body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    background: rgba(23, 15, 38, 0.85);
-    border-bottom: 2px solid var(--accent-turquoise);
-    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
-}
-
-.top-btn {
-    background: rgba(147, 51, 234, 0.15);
-    color: var(--accent-gold);
-    border: 1px solid var(--accent-gold);
-    padding: 10px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.top-btn:hover {
-    background: var(--accent-gold);
-    color: var(--bg-main);
-}
-
-.main-wrapper {
-    display: flex;
-    gap: 20px;
-    max-width: 1400px;
-    width: 100%;
-    margin: 20px auto;
-    padding: 0 20px;
-    flex: 1;
-    height: calc(100vh - 110px);
-}
-
-.sidebar {
-    width: 340px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.sidebar-title { 
-    color: var(--accent-gold); 
-    font-size: 1.25rem; 
-    font-weight: bold; 
-    text-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
-}
-
-.users-list {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.user-card {
-    background: rgba(147, 51, 234, 0.08);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    padding: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: 0.3s ease;
-}
-
-.user-card:hover {
-    border-color: var(--accent-turquoise);
-    transform: translateY(-2px);
-}
-
-.user-card.active {
-    background: rgba(6, 182, 212, 0.15);
-    border-color: var(--accent-turquoise);
-    box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
-}
-
-.user-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-turquoise));
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 1px solid var(--accent-gold);
-}
-
+body { background-color: var(--bg-main); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+.top-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(23, 15, 38, 0.85); border-bottom: 2px solid var(--accent-turquoise); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15); }
+.top-btn { background: rgba(147, 51, 234, 0.15); color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 10px 18px; border-radius: 10px; cursor: pointer; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease; }
+.top-btn:hover { background: var(--accent-gold); color: var(--bg-main); }
+.main-wrapper { display: flex; gap: 20px; max-width: 1400px; width: 100%; margin: 20px auto; padding: 0 20px; flex: 1; height: calc(100vh - 110px); }
+.sidebar { width: 340px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
+.sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+.sidebar-title { color: var(--accent-gold); font-size: 1.25rem; font-weight: bold; text-shadow: 0 0 8px rgba(251, 191, 36, 0.3); }
+.users-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.user-card { background: rgba(147, 51, 234, 0.08); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s ease; }
+.user-card:hover { border-color: var(--accent-turquoise); transform: translateY(-2px); }
+.user-card.active { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-turquoise); box-shadow: 0 0 12px rgba(6, 182, 212, 0.25); }
+.user-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), var(--accent-turquoise)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid var(--accent-gold); }
 .user-info { flex: 1; overflow: hidden; }
 .user-name { font-weight: bold; color: var(--accent-turquoise); }
 .user-last-msg { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-.chat-container {
-    flex: 1;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.chat-header {
-    padding: 18px 25px;
-    background: rgba(147, 51, 234, 0.1);
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-#activeUserName {
-    color: var(--accent-gold);
-}
-
-.mobile-back-btn {
-    display: none;
-    background: var(--accent-purple);
-    border: none;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+.chat-container { flex: 1; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; display: flex; flex-direction: column; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
+.chat-header { padding: 18px 25px; background: rgba(147, 51, 234, 0.1); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; }
+#activeUserName { color: var(--accent-gold); }
+.mobile-back-btn { display: none; background: var(--accent-purple); border: none; color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+.chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
 .message-item { display: flex; gap: 12px; max-width: 80%; }
 .message-item.received { align-self: flex-start; }
 .message-item.sent { align-self: flex-end; flex-direction: row-reverse; }
-
-.msg-bubble {
-    padding: 12px 18px;
-    border-radius: 16px;
-    font-size: 0.98rem;
-    position: relative;
-    word-break: break-word;
-}
-
-.message-item.received .msg-bubble { 
-    background: var(--msg-user-bg); 
-    border: 1px solid rgba(6, 182, 212, 0.3);
-    color: #fff;
-    border-bottom-right-radius: 4px; 
-}
-
-.message-item.sent .msg-bubble { 
-    background: linear-gradient(135deg, var(--accent-purple), #6b21a8); 
-    color: #fff; 
-    border: 1px solid var(--accent-gold);
-    border-bottom-left-radius: 4px; 
-}
-
+.msg-bubble { padding: 12px 18px; border-radius: 16px; font-size: 0.98rem; position: relative; word-break: break-word; }
+.message-item.received .msg-bubble { background: var(--msg-user-bg); border: 1px solid rgba(6, 182, 212, 0.3); color: #fff; border-bottom-right-radius: 4px; }
+.message-item.sent .msg-bubble { background: linear-gradient(135deg, var(--accent-purple), #6b21a8); color: #fff; border: 1px solid var(--accent-gold); border-bottom-left-radius: 4px; }
 .msg-time { display: block; font-size: 0.72rem; margin-top: 5px; color: var(--text-secondary); }
-
-.chat-input-area {
-    padding: 15px 20px;
-    background: rgba(147, 51, 234, 0.05);
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    gap: 12px;
-}
-
-.chat-input-area input {
-    flex: 1;
-    background: rgba(12, 7, 20, 0.6);
-    border: 1px solid var(--accent-turquoise);
-    border-radius: 12px;
-    padding: 12px 18px;
-    color: #fff;
-    outline: none;
-}
-
-.chat-input-area input:focus {
-    box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
-}
-
-.send-btn {
-    background: linear-gradient(135deg, var(--accent-turquoise), #0284c7);
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.send-btn:hover { 
-    background: linear-gradient(135deg, var(--accent-gold), #d97706);
-    color: var(--bg-main);
-}
-
+.chat-input-area { padding: 15px 20px; background: rgba(147, 51, 234, 0.05); border-top: 1px solid var(--border-color); display: flex; gap: 12px; }
+.chat-input-area input { flex: 1; background: rgba(12, 7, 20, 0.6); border: 1px solid var(--accent-turquoise); border-radius: 12px; padding: 12px 18px; color: #fff; outline: none; }
+.chat-input-area input:focus { box-shadow: 0 0 10px rgba(6, 182, 212, 0.3); }
+.send-btn { background: linear-gradient(135deg, var(--accent-turquoise), #0284c7); color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
+.send-btn:hover { background: linear-gradient(135deg, var(--accent-gold), #d97706); color: var(--bg-main); }
 @media (max-width: 768px) {
     .main-wrapper { flex-direction: column; height: calc(100vh - 90px); margin: 10px auto; padding: 0 10px; }
     .sidebar { width: 100%; height: 100%; }
@@ -260,7 +61,6 @@ body {
 }
 </style>
 </head>
-
 <body>
 
 <div class="top-bar">
@@ -296,48 +96,51 @@ body {
 </div>
 
 <script>
-let selectedUserId = null;
-let lastAdminJSON = "";
+var activeUser = null;
+var prevChatsJSON = "";
 
 function loadUsersList() {
-    const allChats = JSON.parse(localStorage.getItem('siraisia_chats')) || {};
-    const container = document.getElementById('usersListContainer');
-    const userIds = Object.keys(allChats);
+    var rawData = localStorage.getItem('siraisia_chats');
+    var chats = rawData ? JSON.parse(rawData) : {};
+    var box = document.getElementById('usersListContainer');
+    var ids = Object.keys(chats);
 
-    if (userIds.length === 0) {
-        container.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 25px;">لا توجد محادثات حتي الآن</div>';
+    if (ids.length === 0) {
+        box.innerHTML = '<div style="color: var(--text-secondary); text-align: center; padding: 25px;">لا توجد محادثات حتي الآن</div>';
         return;
     }
 
-    let html = '';
-    userIds.forEach(uId => {
-        const user = allChats[uId];
-        const lastMsgObj = user.messages && user.messages.length > 0 ? user.messages[user.messages.length - 1] : null;
-        const lastMsgText = lastMsgObj ? lastMsgObj.text : 'لا توجد رسائل';
-        const activeClass = uId === selectedUserId ? 'active' : '';
+    var listHtml = '';
+    for (var i = 0; i < ids.length; i++) {
+        var id = ids[i];
+        var u = chats[id];
+        var msgs = u.messages || [];
+        var lastMsg = msgs.length > 0 ? msgs[msgs.length - 1].text : 'لا توجد رسائل';
+        var name = u.name || 'مستخدم';
+        var isActive = (id === activeUser) ? 'active' : '';
 
-        html += `
-            <div class="user-card ${activeClass}" onclick="selectUser('${uId}')">
-                <div class="user-avatar">${(user.name || 'U').charAt(0).toUpperCase()}</div>
-                <div class="user-info">
-                    <div class="user-name">${user.name || 'مستخدم'}</div>
-                    <div class="user-last-msg">${lastMsgText}</div>
-                </div>
-            </div>
-        `;
-    });
+        listHtml += '<div class="user-card ' + isActive + '" onclick="selectUser(\'' + id + '\')">' +
+            '<div class="user-avatar">' + name.charAt(0).toUpperCase() + '</div>' +
+            '<div class="user-info">' +
+                '<div class="user-name">' + name + '</div>' +
+                '<div class="user-last-msg">' + lastMsg + '</div>' +
+            '</div>' +
+        '</div>';
+    }
 
-    container.innerHTML = html;
+    box.innerHTML = listHtml;
 }
 
-function selectUser(uId) {
-    selectedUserId = uId;
-    markAsSeen(uId);
+function selectUser(id) {
+    activeUser = id;
+    markAsSeen(id);
 
-    const allChats = JSON.parse(localStorage.getItem('siraisia_chats')) || {};
-    const user = allChats[uId];
-    if (user) {
-        document.getElementById('activeUserName').innerText = user.name || 'مستخدم';
+    var rawData = localStorage.getItem('siraisia_chats');
+    var chats = rawData ? JSON.parse(rawData) : {};
+    var u = chats[id];
+
+    if (u) {
+        document.getElementById('activeUserName').innerText = u.name || 'مستخدم';
         
         if (window.innerWidth <= 768) {
             document.getElementById('sidebarArea').classList.add('mobile-hide');
@@ -349,18 +152,21 @@ function selectUser(uId) {
     }
 }
 
-function markAsSeen(uId) {
-    let allChats = JSON.parse(localStorage.getItem('siraisia_chats')) || {};
-    if (allChats[uId] && allChats[uId].messages) {
-        let updated = false;
-        allChats[uId].messages.forEach(msg => {
-            if (msg.sender === 'user' && !msg.seen) {
-                msg.seen = true;
-                updated = true;
+function markAsSeen(id) {
+    var rawData = localStorage.getItem('siraisia_chats');
+    var chats = rawData ? JSON.parse(rawData) : {};
+    
+    if (chats[id] && chats[id].messages) {
+        var isChanged = false;
+        var list = chats[id].messages;
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].sender === 'user' && !list[i].seen) {
+                list[i].seen = true;
+                isChanged = true;
             }
-        });
-        if (updated) {
-            localStorage.setItem('siraisia_chats', JSON.stringify(allChats));
+        }
+        if (isChanged) {
+            localStorage.setItem('siraisia_chats', JSON.stringify(chats));
         }
     }
 }
@@ -370,81 +176,82 @@ function backToUsersList() {
     document.getElementById('chatContainer').classList.remove('mobile-show');
 }
 
-function renderAdminChat(force = false) {
-    if (!selectedUserId) return;
+function renderAdminChat(force) {
+    if (!activeUser) return;
 
-    markAsSeen(selectedUserId);
+    markAsSeen(activeUser);
 
-    const allChats = JSON.parse(localStorage.getItem('siraisia_chats')) || {};
-    const user = allChats[selectedUserId];
-    const messagesContainer = document.getElementById('adminChatMessages');
+    var rawData = localStorage.getItem('siraisia_chats');
+    var chats = rawData ? JSON.parse(rawData) : {};
+    var u = chats[activeUser];
+    var chatBox = document.getElementById('adminChatMessages');
 
-    if (!user || !user.messages) return;
+    if (!u || !u.messages) return;
 
-    const currentJSON = JSON.stringify(user.messages);
-    if (!force && currentJSON === lastAdminJSON) return;
-    lastAdminJSON = currentJSON;
+    var currentJSON = JSON.stringify(u.messages);
+    if (!force && currentJSON === prevChatsJSON) return;
+    prevChatsJSON = currentJSON;
 
-    messagesContainer.innerHTML = '';
+    var html = '';
+    for (var i = 0; i < u.messages.length; i++) {
+        var m = u.messages[i];
+        var msgType = (m.sender === 'user') ? 'received' : 'sent';
+        html += '<div class="message-item ' + msgType + '">' +
+            '<div class="msg-bubble">' + m.text + '<span class="msg-time">' + m.time + '</span></div>' +
+        '</div>';
+    }
 
-    user.messages.forEach(msg => {
-        const wrapper = document.createElement('div');
-        if (msg.sender === 'user') {
-            wrapper.className = 'message-item received';
-            wrapper.innerHTML = `<div class="msg-bubble">${msg.text}<span class="msg-time">${msg.time}</span></div>`;
-        } else {
-            wrapper.className = 'message-item sent';
-            wrapper.innerHTML = `<div class="msg-bubble">${msg.text}<span class="msg-time">${msg.time}</span></div>`;
-        }
-        messagesContainer.appendChild(wrapper);
-    });
-
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    chatBox.innerHTML = html;
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function sendAdminReply() {
-    if (!selectedUserId) {
+    if (!activeUser) {
         alert("اختر المحادثة أولا");
         return;
     }
 
-    const input = document.getElementById('adminMessageInput');
-    const text = input.value.trim();
+    var inputField = document.getElementById('adminMessageInput');
+    var msgText = inputField.value.trim();
 
-    if (text !== '') {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (msgText !== '') {
+        var now = new Date();
+        var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        let allChats = JSON.parse(localStorage.getItem('siraisia_chats')) || {};
-        if (allChats[selectedUserId]) {
-            allChats[selectedUserId].messages.push({
+        var rawData = localStorage.getItem('siraisia_chats');
+        var chats = rawData ? JSON.parse(rawData) : {};
+
+        if (chats[activeUser]) {
+            chats[activeUser].messages.push({
                 sender: 'Siraisia',
-                text: text,
-                time: timeString
+                text: msgText,
+                time: timeStr
             });
-            localStorage.setItem('siraisia_chats', JSON.stringify(allChats));
 
+            localStorage.setItem('siraisia_chats', JSON.stringify(chats));
             renderAdminChat(true);
             loadUsersList();
-            input.value = '';
+            inputField.value = '';
         }
     }
 }
 
-function handleAdminKeyPress(event) {
-    if (event.key === 'Enter') sendAdminReply();
+function handleAdminKeyPress(e) {
+    if (e.key === 'Enter') {
+        sendAdminReply();
+    }
 }
 
-window.addEventListener('storage', (e) => {
+window.addEventListener('storage', function(e) {
     if (e.key === 'siraisia_chats') {
         loadUsersList();
-        if (selectedUserId) renderAdminChat();
+        if (activeUser) renderAdminChat();
     }
 });
 
-setInterval(() => {
+setInterval(function() {
     loadUsersList();
-    if (selectedUserId) renderAdminChat();
+    if (activeUser) renderAdminChat();
 }, 500);
 
 loadUsersList();
