@@ -1,25 +1,6 @@
 
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
 
-:root {
-    --bg-gradient: linear-gradient(135deg, #0f171e, #080d12);
-    --text-main: #ffffff;
-    --text-sub: #b0bec5;
-    --box-bg: rgba(255, 255, 255, 0.06);
-    --box-border: rgba(255, 255, 255, 0.15);
-    --card-h2: #ff7300; 
-    --dropdown-bg: #15202b;
-    --dropdown-text: #ffffff;
-}
-
-[data-theme="light"] {
     --bg-gradient: linear-gradient(135deg, #eef2f5, #cfd8dc);
     --text-main: #1a252f;
     --text-sub: #546e7a;
