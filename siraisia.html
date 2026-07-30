@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siraisia Admin | لوحة التحكم</title>
+<title>Siraisia's world</title>
 <style>
 :root {
-    /* لوحة الألوان الجديدة */
-    --bg-main: #0c0714;                    /* خلفية الصفحة بنفسجي داكن جداً */
-    --card-bg: rgba(23, 15, 38, 0.95);     /* خلفية الكروت بالبنفسجي */
-    --accent-purple: #9333ea;              /* البنفسجي الأساسي */
-    --accent-turquoise: #06b6d4;           /* الفيروزي المميز */
-    --accent-gold: #fbbf24;                /* الذهبي البرّاق */
-    --text-primary: #f8fafc;
+    --bg-main: #0c0714;               
+    --card-bg: rgba(23, 15, 38, 0.95); 
+    --accent-purple: #9333ea;             
+    --accent-turquoise: #06b6d4;      
+    --accent-gold: #fbbf24;                
+    --text-primary: #c9e1f8;
     --text-secondary: #cbd5e1;
     --border-color: rgba(147, 51, 234, 0.25);
-    --msg-user-bg: #1e112a;                /* خلفية رسالة المستخدم */
-    --msg-admin-bg: #7e22ce;               /* خلفية رد الأدمن بنفسجي */
+    --msg-user-bg: #1e112a;                
+    --msg-admin-bg: #7e22ce;             
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
@@ -265,33 +264,33 @@ body {
 <body>
 
 <div class="top-bar">
-    <a href="index.html" class="top-btn">↩ الصفحة الرئيسية</a>
-    <button class="top-btn" style="border-color: var(--accent-turquoise); color: var(--accent-turquoise);">لوحة تحكم Siraisia 👑</button>
+    <a href="index.html" class="top-btn"> الصفحة الرئيسية</a>
+    <button class="top-btn" style="border-color: var(--accent-turquoise); color: var(--accent-turquoise);">Sia's sichat</button>
 </div>
 
 <div class="main-wrapper">
     <div class="sidebar" id="sidebarArea">
         <div class="sidebar-header">
-            <span class="sidebar-title">المحادثات الواردة</span>
+            <span class="sidebar-title">المحادثات </span>
         </div>
         <div class="users-list" id="usersListContainer"></div>
     </div>
 
     <div class="chat-container" id="chatContainer">
         <div class="chat-header">
-            <button class="mobile-back-btn" onclick="backToUsersList()">↩ القائمة</button>
-            <h3 id="activeUserName">اختر محادثة للبدء</h3>
+            <button class="mobile-back-btn" onclick="backToUsersList()"> القائمة</button>
+            <h3 id="activeUserName">Sia Chat</h3>
         </div>
 
         <div class="chat-messages" id="adminChatMessages">
             <div style="text-align: center; color: var(--text-secondary); margin-top: 60px;">
-                اختر شات من القائمة الجانبية لقراءة واستلام الرسائل
+              Choose a Chat to start talkin' to ur stars
             </div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="adminMessageInput" placeholder="اكتبي ردك يا Siraisia..." onkeypress="handleAdminKeyPress(event)">
-            <button class="send-btn" onclick="sendAdminReply()">إرسال الرد</button>
+            <input type="text" id="adminMessageInput" placeholder="اكتبي ردك يا سيرايسيا..." onkeypress="handleAdminKeyPress(event)">
+            <button class="send-btn" onclick="sendAdminReply()">إرسال </button>
         </div>
     </div>
 </div>
@@ -405,7 +404,7 @@ function renderAdminChat(force = false) {
 
 function sendAdminReply() {
     if (!selectedUserId) {
-        alert("اختر شات أولاً!");
+        alert("اختر المحادثة أولا");
         return;
     }
 
