@@ -3,93 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-    <title id="metaTitle">Elixir of awareness</title>
+    <title>Elixir of Awareness</title>
     <link rel="stylesheet" href="style2.css">
     
     <style>
-        .artc-unified-header-box { overflow: visible !important; z-index: 10; }
-        .artc-left-group { position: relative !important; z-index: 20; }
-        .artc-dropdown-menu { position: absolute !important; z-index: 30; }
-        .artc-article-display-box { position: relative !important; z-index: 1; }
+        .site-header {
+            overflow: visible !important;
+            z-index: 1000 !important;
+        }
+        .nav-actions {
+            position: relative !important;
+            z-index: 999999 !important;
+        }
+        .lang-menu {
+            position: absolute !important;
+            z-index: 99999999 !important;
+        }
+        .article-card {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        .article-text {
+            white-space: pre-line;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
 
-    <div id="google_translate_element" style="display:none !important;"></div>
+    <div id="google_translate_element" style="display:none !important; visibility:hidden !important; position:absolute; top:-9999px;"></div>
 
-    <div class="artc-main-wrapper">
-        <div class="artc-unified-header-box">
-            <div class="artc-controls-row">
-                <button class="artc-control-btn" onclick="location.href='index.html'"> العودة لصفحة الرئيسية</button>
-                <div class="artc-left-group">
-                    <div class="artc-images-container">
-                        <img src="aw.png" alt="The Golden Shadow" class="artc-brand-img">
-                        <img src="aw.png" alt="The Golden Shadow" class="artc-brand-img">
+    <div class="page-wrapper">
+        <header class="site-header">
+            <div class="top-nav">
+                <button class="nav-btn" onclick="window.location.href='index.html'">العودة للرئيسية</button>
+                <div class="nav-actions">
+                    <div class="brand-box">
+                        <img src="aw.png" alt="The Golden Shadow" class="brand-logo">
+                        <img src="aw.png" alt="The Golden Shadow" class="brand-logo">
                     </div>
                     
-                    <button class="artc-control-btn" onclick="toggleLangMenu(event)">🌐 اختر اللغة</button>
+                    <button class="nav-btn" onclick="toggleLangMenu(event)">🌐 اختر اللغة</button>
                     
-                    <div class="artc-dropdown-menu" id="customLangDropdown" onclick="event.stopPropagation()">
-                        <div class="artc-search-wrapper">
+                    <div class="lang-menu" id="customLangDropdown" onclick="event.stopPropagation()">
+                        <div class="search-box">
                             <input type="text" id="langSearchBar" placeholder="ابحث..." onkeyup="filterLanguages()">
                         </div>
-                        <div class="artc-lang-list-scroller languages-list" id="langsList">
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('ar')">العربية</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('en')">English</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('fr')">Français</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('es')">Español</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('de')">Deutsch</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('tr')">Türkçe</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('it')">Italiano</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('ru')">Русский</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('zh-CN')">简体中文</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('ja')">日本語</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('ko')">한국어</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('pt')">Português</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('hi')">हिन्दी</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('fa')">فارسی</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('ur')">اوردو</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('sv')">svenska</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('nl')">Nederlands</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('pl')">Polski</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('he')">עברית</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('el')">Ελληνικά</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('th')">thai</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('bm')">Bamanankan (مالي)</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('id')">Bahasa Indonesia</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('la')">Latina</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('sw')">Kiswahili</a>
-                            <a href="javascript:void(0)" class="artc-lang-item" onclick="changeLanguage('bn')">বাংলা (بنغالي)</a>
+                        <div class="lang-scroll-list languages-list" id="langsList">
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('ar')">العربية</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('en')">English</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('fr')">Français</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('es')">Español</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('de')">Deutsch</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('tr')">Türkçe</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('it')">Italiano</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('ru')">Русский</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('zh-CN')">简体中文</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('ja')">日本語</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('ko')">한국어</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('pt')">Português</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('hi')">हिन्दी</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('fa')">فارسی</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('ur')">اوردو</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('sv')">svenska</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('nl')">Nederlands</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('pl')">Polski</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('he')">עברית</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('el')">Ελληνικά</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('th')">thai</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('bm')">Bamanankan (مالي)</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('id')">Bahasa Indonesia</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('la')">Latina</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('sw')">Kiswahili</a>
+                            <a href="javascript:void(0)" class="lang-option" onclick="changeLanguage('bn')">বাংলা (بنغالي)</a>
                         </div>
                     </div>
-                    <button class="artc-control-btn" onclick="toggleCustomTheme()">🌓 الوضع الداكن/المضيء</button>
+                    <button class="nav-btn" onclick="toggleCustomTheme()">🌓 الوضع الداكن/المضيء</button>
                 </div>
             </div>
-            <div class="artc-header-text-center">
-                <h1 class="artc-category-title" id="categoryTitleHeader">The Golden Shadow</h1>
-                <p class="artc-category-subtitle">الوعي هو الجسر السري بين حكمة الجسد وسكينة الروح</p>
+            
+            <div class="header-hero">
+                <h1 class="category-heading" id="categoryTitleHeader">The Golden Shadow</h1>
+                <p class="category-tagline">الوعي هو الجسر السري بين حكمة الجسد وسكينة الروح</p>
             </div>
-        </div>
+        </header>
 
-        <div class="artc-article-display-box">
-            <h2 class="artc-main-article-title" id="articleMainTitle">جاري تحميل عنوان المقال...</h2>
-            <hr class="artc-divider-line">
-            <div class="artc-article-body-text" id="articleMainBody">جاري جلب تفاصيل النص...</div>
-        </div>
+        <main class="article-card">
+            <h2 class="article-heading" id="articleMainTitle">جاري تحميل عنوان المقال...</h2>
+            <hr class="section-divider">
+            <div class="article-text" id="articleMainBody">جاري جلب تفاصيل النص...</div>
+        </main>
 
-        <div class="artc-bottom-actions">
-            <button class="artc-btn-renrei" onclick="location.href='index.html'">اكتشاف منصة RenRei</button>
-            <div class="artc-chat-row-flex">
-                <button class="artc-chat-button-click siraisia-purple-btn" onclick="location.href='chat-siraisia.html'"> لايف شات مع Sia</button>
-                <button class="artc-chat-button-click miastra-blue-btn" onclick="location.href='chatmia.html'"> لايف شات مع Mia</button>
+        <section class="bottom-controls">
+            <button class="renrei-btn" onclick="window.location.href='index.html'">اكتشاف منصة RenRei</button>
+            <div class="chat-group">
+                <button class="chat-btn sia-style" onclick="window.location.href='chat-siraisia.html'"> لايف شات مع Sia</button>
+                <button class="chat-btn mia-style" onclick="window.location.href='chat-miastra.html'"> لايف شات مع Mia</button>
             </div>
-        </div>
+        </section>
     </div>
 
-    <div class="footer-container">
-        <p class="copyright">&copy; 2026 جميع الحقوق محفوظة لـ Miastra و Siraisia.</p>
-    </div>
+    <footer class="main-footer">
+        <p class="copyright-text">&copy; 2026 جميع الحقوق محفوظة لـ Miastra و Siraisia.</p>
+    </footer>
 
+    <script>
+        const PROJECT_ID = "v6smc6gy";
+        const DATASET = "production";
+
+        function parseFullContent(post) {
+            let data = post.content || post.body;
+            if (!data) return "لا يوجد محتوى متاح لهذا المقال.";
+            if (typeof data === 'string') return data;
+            if (Array.isArray(data)) {
+                return data
+                    .filter(b => b._type === 'block' && b.children)
+                    .map(b => b.children.map(c => c.text).join(''))
+                    .join('\n\n');
+            }
+            return "بنية النص غير مدعومة.";
+        }
+
+        async function fetchSingleArticle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ARTICLE_ID = urlParams.get('id');
+
+            if (!ARTICLE_ID) {
+                document.getElementById("articleMainTitle").innerText = "خطأ: المعرف غير موجود";
+                document.getElementById("articleMainBody").innerText = "لم يتم العثور على id المقال في رابط الصفحة.";
+                return;
+            }
+
+            const QUERY = encodeURIComponent(`*[_id == "${ARTICLE_ID}" || _id == "drafts.${ARTICLE_ID}"][0]{ title, content, body, "categoryName": categories[0]->title }`);
+            const SANITY_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+            try {
+                const response = await fetch(SANITY_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP Error Status: ${response.status}`);
+                }
+                const data = await response.json();
+                const post = data.result;
+
+                if (!post) { 
+                    document.getElementById("articleMainTitle").innerText = "المقال غير موجود"; 
+                    document.getElementById("articleMainBody").innerText = "تأكد من صحة الـ ID داخل لوحة تحكم Sanity.";
+                    return; 
+                }
+
+                if (post.categoryName) {
+                    document.getElementById("categoryTitleHeader").innerText = post.categoryName;
+                }
+                document.getElementById("articleMainTitle").innerText = post.title || "بدون عنوان";
+                document.getElementById("articleMainBody").innerText = parseFullContent(post);
+
+            } catch (error) { 
+                console.error("تفاصيل الخطأ:", error);
+                document.getElementById("articleMainTitle").innerText = "خطأ في الاتصال بالسيرفر"; 
+                document.getElementById("articleMainBody").innerText = "تأكد من إضافة 127.0.0.1:5501 في إعدادات CORS داخل لوحة Sanity تحت تبويب API.";
+            }
+        }
+
+        function toggleCustomTheme() {
+            var current = document.documentElement.getAttribute("data-theme") || "dark";
+            var target = current === "light" ? "dark" : "light";
+            document.documentElement.setAttribute("data-theme", target);
+            localStorage.setItem("user-selected-theme", target);
+        }
+        
+        function toggleLangMenu(e) { 
+            e.stopPropagation(); 
+            document.getElementById("customLangDropdown").classList.toggle("active-show"); 
+        }
+        
+        function filterLanguages() {
+            var q = document.getElementById("langSearchBar").value.toLowerCase();
+            document.querySelectorAll(".lang-option").forEach(i => i.style.display = i.textContent.toLowerCase().includes(q) ? "block" : "none");
+        }
+        
+        function changeLanguage(code) {
+            var el = document.querySelector('select.goog-te-combo');
+            if(el) { 
+                el.value = code; 
+                el.dispatchEvent(new Event('change')); 
+            }
+            document.getElementById("customLangDropdown").classList.remove("active-show");
+        }
+        
+        document.addEventListener("click", () => document.getElementById("customLangDropdown").classList.remove("active-show"));
+        function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'ar', autoDisplay: false }, 'google_translate_element'); }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.setAttribute("data-theme", localStorage.getItem("user-selected-theme") || "dark");
+            fetchSingleArticle();
+        });
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
