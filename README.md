@@ -1,3 +1,10 @@
 # Elixir-of-awareness
 A safe sanctuary created to listen to your voice and restore your inner balance. Here, we gather with the intention of healing, growing through awareness, and reconnecting with ourselves and one another.
 =================================================================.
+
+I was developing my awareness website, "RenRei," and the idea hit me to add a psychological and social support section. 
+I knew about the hackathon from a friend, applied a bit late... But yea i'm here now
+Many people downplay psychological disorders, treating them like they're just an invention, fake, or exaggerated pain. So I'm trying to help myself and the others to understand what's happening and to hold on together 
+
+The idea for this project started while I was developing my awareness website, "RenRei." I wanted to add a psychological and social support section, but the vibrant orange and green theme clashed completely with RenRei's original purple and blue palette, so I decided to build a dedicated separate website instead. After learning about the hackathon from a friend and applying a bit late, I successfully built the core version with plenty of room for future enhancements. We are tackling real problems: changing the stigma that treats mental health struggles like fake, exaggerated pain, making sure isolated individuals feel seen and understood by those around them, and spreading awareness about rare physical illnesses so patients can recognize the truth and avoid falling victim to misinformation. To achieve this, the platform features three main sections: Rare Disorders and Diseases to educate on uncommon conditions, Social Issues to uncover the truth behind societal challenges, and Mental Supportfeaturing interactive chats with "Miastra" and "Siraisia" so no one ever has to feel alone. The visual identity relies heavily on intentional color psychology: Green represents growth, healing, and visual calm to reduce anxiety and burnout, while Orange symbolizes spiritual awakening, alchemical transformation, and high vitality to boost creativity and social connection.
+
