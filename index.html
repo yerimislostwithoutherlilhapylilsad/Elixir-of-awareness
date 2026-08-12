@@ -17,6 +17,8 @@
 
 <link rel="icon" type="image/png" href="aw.png">
 <link rel="stylesheet" href="style4.css">
+
+
 </head>
 
 <body>
@@ -32,7 +34,7 @@
 
             <div class="translationHub" id="langDropdown">
                 <div class="langGuid">
-                    <input type="text" id="langSearch" placeholder="ابحث عن لغة..." onkeyup="filterLanguages()">
+                    <input type="text" id="langSearch" placeholder="ابحث عن لغتك..." onkeyup="filterLanguages()">
                 </div>
                 
                 <div class="languages-list" id="langsList"></div>
@@ -53,16 +55,21 @@
     <a href="support.html" class="bridgeOfTruth">
         <div class="remedycard awakeningCard">
             <h2>الدعم النفسي</h2>
-            <p>إعرف المزيد عن الدعم النفسي وطرق التعامل معه.</p>
-            <img src="ms.png" alt="Elixir of Awareness" class="crownView">
+            <p class="hm">كل نسخة منك تستحق الحب و الدعم النفسي.</p><hr>
+            <p>هنا سأحاول جاهدة على دعمك و مساعدتك من خلال البحث عن الكثير من الاضطرابات النفسيه المنتشرة و النادرة ، و آمل أن اتفهم الامر كفاية لأساعدك </p>
+            <img src="ms.png" alt="Elixir of Awareness" id="pic1">
+            <h4 class="note">ستكون بخير ، ثق بي</h4>
         </div>
     </a>
 
     <a href="social.html" class="bridgeOfTruth">
         <div class="remedycard healingCard">
             <h2>قضايا اجتماعية</h2>
-            <p>قضايا اجتماعية ، لمعرفة الحقيقة و كيفية التعامل </p>
-            <img src="social.png" alt="Elixir of Awareness" class="crownView">
+            <p class="hm">أصبح المجتمع أقل وعيا وأكثر صعوبة في فهمه و التعامل معه</p>
+            <p>هنا سأحاول نشر الوعي الإجتماعي لنفهم المشاكل الاجتماعية الحيطة بنا لنتعلم منها و نعرف كيف نتعامل معها</p>
+            <img src="social.png" alt="Elixir of Awareness" id="pic2">
+            <h4 class="note"><strong>المجتمع لازم يتغير</strong></h4>
+            <h6 id="stop">كفاية جهل بقى</h6>
         </div>
     </a>
 
@@ -112,15 +119,22 @@
 <div class="aurashroud" id="loginModal">
     <div class="sanctuarygate">
         <span class="unwind" onclick="closeLoginModal()">&times;</span>
-        <h2 id="modalTitle">Log In / Sign Up</h2>
         
-        <input type="email" id="userEmail" placeholder="البريد الإلكتروني">
-        <input type="password" id="password" placeholder="كلمة المرور">
-        <button class="recallPath" onclick="resetPassword()">نسيت كلمة المرور؟</button>
-        
-        <div class="triggers">
-            <button class="manifestaccess" onclick="submitLogin()">Log In</button>
-            <button class="signup-submit-btn" onclick="submitSignUp()">Sign Up</button>
+        <div class="modal-tabs">
+            <button class="tab-btn active" id="loginTabBtn" onclick="switchAuthMode('login')">تسجيل الدخول</button>
+            <button class="tab-btn" id="signupTabBtn" onclick="switchAuthMode('signup')">حساب جديد</button>
+        </div>
+
+        <div class="tab-content">
+            <input type="email" id="userEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            
+            <button class="recallPath" id="forgotPassBtn" onclick="resetPassword()">نسيت كلمة المرور؟</button>
+            
+            <div class="triggers">
+                <button class="manifestaccess" id="loginSubmitBtn" onclick="submitLogin()">Log In</button>
+                <button class="signup-submit-btn" id="signUpSubmitBtn" onclick="submitSignUp()" style="display: none;">Sign Up</button>
+            </div>
         </div>
 
         <div class="divider"><span>أو</span></div>
@@ -298,6 +312,28 @@ function navigateToChat(defaultUserPage, targetAdmin) {
 
 function openLoginModal() { document.getElementById("loginModal").classList.add("open"); }
 function closeLoginModal() { document.getElementById("loginModal").classList.remove("open"); }
+
+function switchAuthMode(mode) {
+    const loginTabBtn = document.getElementById("loginTabBtn");
+    const signupTabBtn = document.getElementById("signupTabBtn");
+    const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+    const signUpSubmitBtn = document.getElementById("signUpSubmitBtn");
+    const forgotPassBtn = document.getElementById("forgotPassBtn");
+
+    if (mode === 'login') {
+        loginTabBtn.classList.add("active");
+        signupTabBtn.classList.remove("active");
+        loginSubmitBtn.style.display = "block";
+        signUpSubmitBtn.style.display = "none";
+        forgotPassBtn.style.display = "block";
+    } else {
+        signupTabBtn.classList.add("active");
+        loginTabBtn.classList.remove("active");
+        loginSubmitBtn.style.display = "none";
+        signUpSubmitBtn.style.display = "block";
+        forgotPassBtn.style.display = "none";
+    }
+}
 
 function handleAuthClick() {
     if (isLoggedIn) {
