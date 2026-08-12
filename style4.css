@@ -1,447 +1,496 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="metaTitle">Elixir of Awareness</title>
+<meta name="description" id="metaDesc" content="الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.">
+<meta name="keywords" content="الوعي, الدعم النفسي, قضايا اجتماعية, الأمراض النادرة, Elixir of Awareness">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elixir of Awareness">
+<meta property="og:description" content="الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.">
+<meta property="og:image" content="aw.png">
+<meta property="og:site_name" content="Elixir of Awareness">
+
+<link rel="icon" type="image/png" href="aw.png">
+<link rel="stylesheet" href="style4.css">
+
+
+</head>
+
+<body>
+
+<div id="google_translate_element"></div>
+
+<div class="elixir">
+    <button id="authBtn" class="tbt" onclick="handleAuthClick()">Log in / Sign up</button>
+
+    <div class="compassControls">
+        <div class="ctc">
+            <button class="tbt translate-btn" onclick="toggleDropdown()">اللغة/Language</button>
+
+            <div class="translationHub" id="langDropdown">
+                <div class="langGuid">
+                    <input type="text" id="langSearch" placeholder="ابحث عن لغتك..." onkeyup="filterLanguages()">
+                </div>
+                
+                <div class="languages-list" id="langsList"></div>
+            </div>
+        </div>
+
+        <button class="tbt" onclick="toggleTheme()">المظهر/Theme</button>
+        <img src="aw.png" alt="Awareness" class="awarenessSymbol">
+    </div>
+</div>
+
+<div class="empathy">
+    <h1>Elixir of Awareness</h1>
+    <p>الوعي هو الجسر السري بين حكمة الجسد، وسكينة الروح، وحرية المجتمع.</p>
+</div>
+
+<div class="solidarityhub">
+    <a href="support.html" class="bridgeOfTruth">
+        <div class="remedycard awakeningCard">
+            <h2>الدعم النفسي</h2>
+            <p class="hm">كل نسخة منك تستحق الحب و الدعم النفسي.</p><hr>
+            <p>هنا سأحاول جاهدة على دعمك و مساعدتك من خلال البحث عن الكثير من الاضطرابات النفسيه المنتشرة و النادرة ، و آمل أن اتفهم الامر كفاية لأساعدك </p>
+            <img src="ms.png" alt="Elixir of Awareness" id="pic1">
+            <h4 class="note">ستكون بخير ، ثق بي</h4>
+        </div>
+    </a>
+
+    <a href="social.html" class="bridgeOfTruth">
+        <div class="remedycard healingCard">
+            <h2>قضايا اجتماعية</h2>
+            <p class="hm">أصبح المجتمع أقل وعيا وأكثر صعوبة في فهمه و التعامل معه</p>
+            <p>هنا سأحاول نشر الوعي الإجتماعي لنفهم المشاكل الاجتماعية الحيطة بنا لنتعلم منها و نعرف كيف نتعامل معها</p>
+            <img src="social.png" alt="Elixir of Awareness" id="pic2">
+            <h4 class="note"><strong>المجتمع لازم يتغير</strong></h4>
+            <h6 id="stop">كفاية جهل بقى</h6>
+        </div>
+    </a>
+
+    <a href="info.html" class="bridgeOfTruth">
+        <div class="remedycard transcendenceCard">
+            <h2>الاضطرابات والأمراض النادرة</h2>
+            <p>لإدراك المزيد عن الامراض و الاضطرابات الغير شائعة</p>
+            <img src="d.png" alt="Elixir of Awareness" class="crownView">
+        </div>
+    </a>
+</div>
+
+<div class="admin-cute-panel" id="adminPanel">
+    <h3>Welcome to our Elixir.</h3>
+    <div class="adminplace">
+        <a href="miastra.html" class="mindfulness vishuddha">
+            <span class="innerClarity">Miastra</span>
+            <span class="awakenedMind"> دخول</span>
+        </a>
+        <a href="siraisia.html" class="mindfulness sahasrara">
+            <span class="innerClarity">Siraisia</span>
+            <span class="awakenedMind"> دخول</span>
+        </a>
+    </div>
+</div>
+
+<div class="advocacyrealm" id="userRealm">
+    <a href="https://awakingrenrei57.netlify.app/" target="_blank" class="mySafeRenrei">موقعنا RenRei</a>
+
+    <div class="alchemyofhopebtns">
+        <h3> تواصل معنا عبر البريد الإلكتروني</h3>
+        <div class="energyCluster">
+            <a href="mailto:miastra673@gmail.com" class="unitebtn echomail2"> تواصل مع Miastra</a>
+            <a href="mailto:siraisia573@gmail.com" class="unitebtn echomail"> تواصل مع Siraisia</a>
+        </div>
+    </div>
+
+    <div class="alchemyofhopebtns">
+        <h3>غرف الدردشة المباشرة </h3>
+        <div class="energyCluster">
+            <div onclick="navigateToChat('chatmia.html', 'miastra')" class="unitebtn dialoguechat"> دردشة مباشرة مع ميا</div>
+            <div onclick="navigateToChat('chatsia.html', 'siraisia')" class="unitebtn dialoguechat2"> دردشة مباشرة مع سيا</div>
+        </div>
+    </div>
+</div>
+
+<div class="aurashroud" id="loginModal">
+    <div class="sanctuarygate">
+        <span class="unwind" onclick="closeLoginModal()">&times;</span>
+        
+        <div class="modal-tabs">
+            <button class="tab-btn active" id="loginTabBtn" onclick="switchAuthMode('login')">تسجيل الدخول</button>
+            <button class="tab-btn" id="signupTabBtn" onclick="switchAuthMode('signup')">حساب جديد</button>
+        </div>
+
+        <div class="tab-content">
+            <input type="email" id="userEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            
+            <button class="recallPath" id="forgotPassBtn" onclick="resetPassword()">نسيت كلمة المرور؟</button>
+            
+            <div class="triggers">
+                <button class="manifestaccess" id="loginSubmitBtn" onclick="submitLogin()">Log In</button>
+                <button class="signup-submit-btn" id="signUpSubmitBtn" onclick="submitSignUp()" style="display: none;">Sign Up</button>
+            </div>
+        </div>
+
+        <div class="divider"><span>أو</span></div>
+
+        <button class="google-nexus" onclick="loginWithGoogle()">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.259h2.908c1.702-1.567 2.684-3.874 2.684-6.617z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/></svg>
+            تسجيل الدخول بواسطة جوجل
+        </button>
+
+        <button class="seeker" onclick="loginAsGuest()">متابعة كزائر (بدون حساب)</button>
+        <p class="seekerguidance"> أصل بيانات الزائر مؤقت ويُمسح تلقائيًا بعد 30 يوم.</p>
+    </div>
+</div>
+
+<div class="aetherbase">
+    <p class="healingmotto">الحق حق وناكر الحق مجرم ، وداعم المجرم اكثر اجراما</p>
+    <p class="legacy">&copy; 2026 جميع الحقوق محفوظة لـ Siraisia و Miastra</p>
+</div>
+
+<div class="signature">Siraisia & Miastra</div>
+
+<script type="text/javascript">
+const languagesList57 = [
+    { code: 'ar', name: 'العربية' },
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'Français' },
+    { code: 'es', name: 'Español' },
+    { code: 'de', name: 'Deutsch' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'zh-CN', name: '简体中文' },
+    { code: 'ja', name: '日本語' },
+    { code: 'ko', name: '한국어' },
+    { code: 'pt', name: 'Português' },
+    { code: 'tr', name: 'Türkçe' },
+    { code: 'nl', name: 'Nederlands' },
+    { code: 'pl', name: 'Polski' },
+    { code: 'sv', name: 'Svenska' },
+    { code: 'no', name: 'Norsk' },
+    { code: 'da', name: 'Dansk' },
+    { code: 'fi', name: 'Suomi' },
+    { code: 'el', name: 'Ελληνικά' },
+    { code: 'he', name: 'عברית' },
+    { code: 'fa', name: 'فارسی' },
+    { code: 'ur', name: 'اردو' },
+    { code: 'hi', name: 'हिन्दी' },
+    { code: 'bn', name: 'বাংলা' },
+    { code: 'id', name: 'Bahasa Indonesia' },
+    { code: 'ms', name: 'Bahasa Melayu' },
+    { code: 'th', name: 'ไทย' },
+    { code: 'vi', name: 'Tiếng Việt' },
+    { code: 'uk', name: 'Українська' },
+    { code: 'cs', name: 'Čeština' },
+    { code: 'hu', name: 'Magyar' },
+    { code: 'ro', name: 'Română' },
+    { code: 'sk', name: 'Slovenčina' },
+    { code: 'bg', name: 'Български' },
+    { code: 'hr', name: 'Hrvatski' },
+    { code: 'sr', name: 'Српски' },
+    { code: 'sl', name: 'Slovenščina' },
+    { code: 'et', name: 'Eesti' },
+    { code: 'lv', name: 'Latviešu' },
+    { code: 'lt', name: 'Lietuvių' },
+    { code: 'tl', name: 'Tagalog' },
+    { code: 'sw', name: 'Kiswahili' },
+    { code: 'af', name: 'Afrikaans' },
+    { code: 'sq', name: 'Shqip' },
+    { code: 'hy', name: 'Հայերեն' },
+    { code: 'az', name: 'Azərbaycan' },
+    { code: 'eu', name: 'Euskara' },
+    { code: 'be', name: 'Беларуская' },
+    { code: 'bs', name: 'Bosanski' },
+    { code: 'ca', name: 'Català' },
+    { code: 'ka', name: 'ქართული' },
+    { code: 'is', name: 'Íslenska' },
+    { code: 'mk', name: 'Македонски' },
+    { code: 'mt', name: 'Malti' },
+    { code: 'ga', name: 'Gaeilge' },
+    { code: 'cy', name: 'Cymraeg' },
+    { code: 'gl', name: 'Galego' }
+];
+
+function buildLanguagesList() {
+    const listContainer = document.getElementById('langsList');
+    listContainer.innerHTML = '';
+    languagesList57.forEach(lang => {
+        const a = document.createElement('a');
+        a.href = "javascript:void(0)";
+        a.className = "notranslate";
+        a.innerText = lang.name;
+        a.onclick = () => changeLanguage(lang.code);
+        listContainer.appendChild(a);
+    });
 }
 
-:root {
-    --bg-gradient: linear-gradient(135deg, #0f171e, #080d12);
-    --text-main: #ffffff;
-    --text-sub: #b0bec5;
-    --box-bg: rgba(255, 255, 255, 0.06);
-    --box-border: rgba(255, 255, 255, 0.15);
-    --card-center-h2: #ffffff;
-    --dropdown-bg: #15202b;
-    --dropdown-text: #ffffff;
-    --section-title: #ff8533;
-    --modal-bg: #1a252f;
-    --scroll-thumb: #ff6600;
+function checkGuestExpiration() {
+    const isGuest = localStorage.getItem("isGuest") === "true";
+    const guestLoginTime = localStorage.getItem("guestLoginTime");
+    if (isGuest && guestLoginTime) {
+        const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+        const now = new Date().getTime();
+        if (now - parseInt(guestLoginTime) > thirtyDaysInMs) {
+            localStorage.clear();
+            alert("انتهت مدة صلاحية الجلسة المؤقتة (30 يوم). تم مسح البيانات بنجاح.");
+            location.reload();
+        }
+    }
+}
+checkGuestExpiration();
+
+let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+let currentUserRole = localStorage.getItem("userRole") || "regular_user";
+
+function checkAdminPanelState() {
+    const adminPanel = document.getElementById("adminPanel");
+    const userRealm = document.getElementById("userRealm");
+
+    if (isLoggedIn && (currentUserRole === "miastra" || currentUserRole === "siraisia")) {
+        adminPanel.style.display = "block";
+        adminPanel.classList.add("show");
+        if (userRealm) userRealm.style.display = "none";
+    } else {
+        adminPanel.style.display = "none";
+        adminPanel.classList.remove("show");
+        if (userRealm) userRealm.style.display = "flex";
+    }
 }
 
-[data-theme="light"] {
-    --bg-gradient: linear-gradient(135deg, #eef2f5, #cfd8dc);
-    --text-main: #1a252f;
-    --text-sub: #546e7a;
-    --box-bg: rgba(255, 255, 255, 0.8);
-    --box-border: rgba(0, 0, 0, 0.1);
-    --card-center-h2: #1a252f;
-    --dropdown-bg: #ffffff;
-    --dropdown-text: #1a252f;
-    --section-title: #d35400;
-    --modal-bg: #ffffff;
-    --scroll-thumb: #d35400;
+function updateAuthButtonUI() {
+    const authBtn = document.getElementById("authBtn");
+    if (isLoggedIn) {
+        authBtn.innerText = "تسجيل الخروج";
+        authBtn.style.background = "#e74c3c";
+    } else {
+        authBtn.innerText = "Log in / Sign up";
+        authBtn.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)";
+    }
+    checkAdminPanelState();
 }
 
-body {
-    background: var(--bg-gradient);
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 40px 20px;
-    position: relative;
-    top: 0px !important;
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'ar', autoDisplay: false }, 'google_translate_element');
 }
 
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: var(--scroll-thumb);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #ff8533;
+function changeLanguage(langCode) {
+    var select = document.querySelector('select.goog-te-combo');
+    if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+    }
+    toggleDropdown();
 }
 
-.elixir {
-    display: flex;
-    width: 100%;
-    max-width: 1100px;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    z-index: 100;
-}
-.compassControls {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-.awarenessSymbol {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 8px;
-}
-.tbt {
-    background: var(--box-bg);
-    border: 1px solid var(--box-border);
-    color: var(--text-main);
-    padding: 10px 18px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
-}
-#authBtn {
-    background: linear-gradient(90deg, #27ae60, #2ecc71);
-    color: #ffffff;
-    border: none;
-}
-.ctc {
-    position: relative;
-}
-.translationHub {
-    display: none;
-    position: absolute;
-    top: 48px;
-    right: 0;
-    background: var(--dropdown-bg);
-    border: 1px solid var(--box-border);
-    border-radius: 12px;
-    width: 240px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    overflow: hidden;
-    z-index: 110;
-}
-.translationHub.show { display: block; }
-.langGuid {
-    padding: 10px;
-    border-bottom: 1px solid var(--box-border);
-}
-.langGuid input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid var(--box-border);
-    background: rgba(0,0,0,0.05);
-    color: var(--dropdown-text);
-    font-size: 0.9rem;
-    outline: none;
-}
-.languages-list {
-    max-height: 250px;
-    overflow-y: auto;
-}
-.languages-list a {
-    display: block;
-    padding: 10px 15px;
-    color: var(--dropdown-text);
-    text-decoration: none;
-    font-size: 0.92rem;
-    text-align: right;
-    transition: background 0.2s;
-}
-.languages-list a:hover {
-    background: #ff6600;
-    color: #ffffff;
-}
-#google_translate_element, .skiptranslate, .goog-te-banner-frame {
-    display: none !important;
+function toggleDropdown() {
+    document.getElementById("langDropdown").classList.toggle("show");
 }
 
-.empathy {
-    background: var(--box-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--box-border);
-    border-bottom: 5px solid #ff6600;
-    padding: 40px;
-    text-align: center;
-    border-radius: 24px;
-    max-width: 800px;
-    width: 100%;
-    margin-bottom: 40px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+function filterLanguages() {
+    var input = document.getElementById("langSearch").value.toLowerCase();
+    var links = document.getElementById("langsList").getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+        var text = links[i].textContent || links[i].innerText;
+        links[i].style.display = text.toLowerCase().indexOf(input) > -1 ? "" : "none";
+    }
 }
 
-.empathy h1 { font-size: 3.2rem; color: #ff7300; margin-bottom: 15px; }
-.empathy p { font-size: 1.25rem; color: #00ff66; font-weight: 500; }
-
-.admin-cute-panel {
-    display: none;
-    background: var(--box-bg);
-    border: 1px solid var(--box-border);
-    padding: 25px 20px;
-    border-radius: 25px;
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-}
-.admin-cute-panel.show { 
-    display: block; 
-}
-.admin-cute-panel h3 { 
-    color: #00ff66; 
-    margin-bottom: 20px; 
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-.adminplace {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.mindfulness {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    text-decoration: none;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid rgba(255,255,255,0.3);
-    cursor: pointer;
-}
-.mindfulness:hover {
-    transform: translateY(-5px) scale(1.08) rotate(3deg);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.45);
-    border-color: #ffffff;
-}
-.innerClarity {
-    font-weight: 800;
-    font-size: 1rem;
-    line-height: 1.2;
-}
-.awakenedMind {
-    font-size: 0.8rem;
-    margin-top: 4px;
-    opacity: 0.9;
-}
-.vishuddha {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-}
-.sahasrara {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+function navigateToChat(defaultUserPage, targetAdmin) {
+    if (!isLoggedIn) {
+        alert("عذراً، يجب عليك تسجيل الدخول أولاً للوصول إلى غرف الدردشة المباشرة.");
+        openLoginModal();
+        return;
+    }
+    window.location.href = defaultUserPage;
 }
 
-.solidarityhub {
-    display: flex;
-    gap: 25px;
-    max-width: 1100px;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-.bridgeOfTruth {
-    text-decoration: none;
-    display: flex;
-    flex: 1;
-    min-width: 280px;
-    color: inherit;
-}
-.remedycard {
-    background: linear-gradient(135deg, rgba(40, 167, 69, 0.25) 0%, var(--box-bg) 50%, rgba(255, 102, 0, 0.25) 100%);
-    border: 2px solid var(--box-border);
-    border-radius: 24px;
-    padding: 35px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.remedycard:hover {
-    transform: translateY(-12px) scale(1.02);
-    background: linear-gradient(135deg, rgba(0, 255, 102, 0.35) 0%, var(--box-bg) 50%, rgba(255, 102, 0, 0.35) 100%);
-    border-color: #00ff66;
-    box-shadow: 0 20px 40px rgba(0, 255, 102, 0.25);
-}
-.remedycard h2 { font-size: 1.7rem; margin-bottom: 15px; font-weight: 700; }
-.awakeningCard h2 { color: #00ff66; }
-.healingCard h2 { color: var(--card-center-h2); }
-.transcendenceCard h2 { color: #ff7300; }
-.remedycard p { color: var(--text-sub); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; }
-.crownView {
-    max-width: 100%;
-    height: 140px;
-    object-fit: contain;
-    border-radius: 12px;
-    margin-top: auto;
-}
-.mySafeRenrei {
-    display: inline-block;
-    background: linear-gradient(90deg, #ff6600, #ff8533);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 14px 35px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-radius: 50px;
-    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
-    margin-bottom: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.mySafeRenrei:hover { transform: scale(1.05); }
+function openLoginModal() { document.getElementById("loginModal").classList.add("open"); }
+function closeLoginModal() { document.getElementById("loginModal").classList.remove("open"); }
 
-.advocacyrealm {
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 50px;
-    align-items: center;
-}
-.alchemyofhopebtns {
-    background: var(--box-bg);
-    border: 1px solid var(--box-border);
-    padding: 25px;
-    border-radius: 20px;
-    width: 100%;
-    text-align: center;
-}
-.alchemyofhopebtns h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--section-title); }
-.energyCluster { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-.unitebtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: #ffffff;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
-}
-.echomail { background: #27ae60; }
-.echomail2 { background: #e67e22; }
-.dialoguechat { background: #2980b9; }
-.dialoguechat2 { background: #8e44ad; }
-.unitebtn:hover { transform: translateY(-4px); filter: brightness(1.15); }
+function switchAuthMode(mode) {
+    const loginTabBtn = document.getElementById("loginTabBtn");
+    const signupTabBtn = document.getElementById("signupTabBtn");
+    const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+    const signUpSubmitBtn = document.getElementById("signUpSubmitBtn");
+    const forgotPassBtn = document.getElementById("forgotPassBtn");
 
-.aurashroud {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
+    if (mode === 'login') {
+        loginTabBtn.classList.add("active");
+        signupTabBtn.classList.remove("active");
+        loginSubmitBtn.style.display = "block";
+        signUpSubmitBtn.style.display = "none";
+        forgotPassBtn.style.display = "block";
+    } else {
+        signupTabBtn.classList.add("active");
+        loginTabBtn.classList.remove("active");
+        loginSubmitBtn.style.display = "none";
+        signUpSubmitBtn.style.display = "block";
+        forgotPassBtn.style.display = "none";
+    }
 }
-.aurashroud.open { opacity: 1; pointer-events: auto; }
-.sanctuarygate {
-    background: var(--modal-bg);
-    color: var(--text-main);
-    padding: 35px 30px;
-    border-radius: 24px;
-    width: 90%;
-    max-width: 420px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    border: 1px solid var(--box-border);
-    text-align: center;
-    position: relative;
-}
-.unwind {
-    position: absolute;
-    top: 15px; right: 20px;
-    font-size: 1.5rem; cursor: pointer; color: var(--text-sub);
-}
-.sanctuarygate h2 { margin-bottom: 20px; color: #ff7300; }
-.sanctuarygate input {
-    width: 100%; padding: 12px; margin-bottom: 12px;
-    border-radius: 10px; border: 1px solid var(--box-border);
-    background: rgba(0,0,0,0.05); color: var(--text-main); outline: none;
-}
-.recallPath {
-    background: none;
-    border: none;
-    color: #ff8533;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-bottom: 12px;
-    display: block;
-    text-align: right;
-    width: 100%;
-    text-decoration: underline;
-}
-.triggers {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-.manifestaccess {
-    flex: 1; padding: 12px; background: #ff6600;
-    border: none; border-radius: 10px; color: #ffffff;
-    font-weight: 600; font-size: 1rem; cursor: pointer;
-}
-.signup-submit-btn {
-    flex: 1; padding: 12px; background: #27ae60;
-    border: none; border-radius: 10px; color: #ffffff;
-    font-weight: 600; font-size: 1rem; cursor: pointer;
-}
-.manifestaccess:hover { background: #ff8533; }
-.signup-submit-btn:hover { background: #2ecc71; }
 
-.divider {
-    margin: 15px 0;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: var(--text-sub);
-    font-size: 0.85rem;
+function handleAuthClick() {
+    if (isLoggedIn) {
+        isLoggedIn = false;
+        currentUserRole = "regular_user";
+        localStorage.clear();
+        updateAuthButtonUI();
+        alert("تم تسجيل الخروج بنجاح.");
+    } else {
+        openLoginModal();
+    }
 }
-.divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid var(--box-border);
+
+function toggleTheme() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
 }
-.divider span { padding: 0 10px; }
-.google-nexus {
-    width: 100%; padding: 11px;
-    background: #ffffff; color: #333333;
-    border: none; border-radius: 10px;
-    font-weight: 600; font-size: 0.95rem;
-    cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-    gap: 10px; margin-bottom: 10px;
-}
-.seeker {
-    width: 100%; padding: 11px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--box-border);
-    color: var(--text-main);
-    border-radius: 10px; font-size: 0.9rem;
-    cursor: pointer; transition: background 0.2s;
-}
-.seeker:hover { background: rgba(255, 255, 255, 0.15); }
-.seekerguidance {
-    font-size: 0.75rem;
-    color: #e74c3c;
-    margin-top: 8px;
-    line-height: 1.3;
-}
-.aetherbase { text-align: center; width: 100%; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--box-border); }
-.healingmotto { font-size: 1.1rem; color: #00ff66; font-style: italic; margin-bottom: 10px; font-weight: 500; }
-.legacy { font-size: 0.9rem; color: var(--text-sub); }
-.signature { position: fixed; bottom: 20px; right: 20px; font-size: 1.5rem; font-weight: 900; color: rgba(255, 255, 255, 0.03); pointer-events: none; user-select: none; }
+
+buildLanguagesList();
+updateAuthButtonUI();
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+    sendPasswordResetEmail,
+    GoogleAuthProvider,
+    signInWithPopup
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4ep41mqm5wnBilB15mE9606yI8y5sdMg",
+    authDomain: "elixir-of-awareness.firebaseapp.com",
+    projectId: "elixir-of-awareness",
+    storageBucket: "elixir-of-awareness.firebasestorage.app",
+    messagingSenderId: "464593540782",
+    appId: "1:464593540782:web:0650c291868867b5e77f3f",
+    measurementId: "G-ZG25D0QLC2"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  function handleUserRoleAndRedirect(email) {
+    const cleanEmail = email.toLowerCase();
+    localStorage.setItem("isLoggedIn", "true");
+
+    if (cleanEmail === "miastra673@gmail.com") {
+        localStorage.setItem("userRole", "miastra");
+        alert("Welcome back Miastra!");
+    } else if (cleanEmail === "siraisia573@gmail.com") {
+        localStorage.setItem("userRole", "siraisia");
+        alert("Welcome back Siraisia!");
+    } else {
+        localStorage.setItem("userRole", "regular_user");
+        alert("Welcome to Elixir of Awareness");
+    }
+    closeLoginModal();
+    location.reload();
+  }
+
+  window.submitLogin = function() {
+    const emailInput = document.getElementById("userEmail").value.trim().toLowerCase();
+    const passInput = document.getElementById("password").value;
+
+    if (!emailInput || !passInput) {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة المرور.");
+        return;
+    }
+
+    signInWithEmailAndPassword(auth, emailInput, passInput)
+      .then((userCredential) => {
+        if (!userCredential.user.emailVerified && emailInput !== "siraisia573@gmail.com" && emailInput !== "miastra673@gmail.com") {
+            alert("يرجى تأكيد حسابك عبر الرابط المرسل إلى بريدك الإلكتروني أولاً.");
+            return;
+        }
+        handleUserRoleAndRedirect(userCredential.user.email);
+      })
+      .catch((error) => {
+        alert("كلمة المرور غير صحيحة أو الحساب غير موجود. يرجى التأكد وإعادة المحاولة.");
+      });
+  };
+
+  window.submitSignUp = function() {
+    const emailInput = document.getElementById("userEmail").value.trim().toLowerCase();
+    const passInput = document.getElementById("password").value;
+
+    if (!emailInput || !passInput) {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة المرور لإنشاء حساب جديد.");
+        return;
+    }
+    if (passInput.length < 6) {
+        alert("كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل.");
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, emailInput, passInput)
+      .then((userCredential) => {
+        sendEmailVerification(userCredential.user)
+          .then(() => {
+            alert("تم إرسال رابط تأكيد إلى بريدك الإلكتروني. يرجى الضغط عليه لتأكيد الحساب ثم سجل دخولك.");
+            closeLoginModal();
+          })
+          .catch((err) => {
+            alert("تم إنشاء الحساب لكن تعذر إرسال رسالة التأكيد: " + err.message);
+          });
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+            alert("عذراً، هذا البريد الإلكتروني مستخدم بالفعل. يرجى تسجيل الدخول.");
+        } else {
+            alert("تعذر إنشاء الحساب: " + error.message);
+        }
+      });
+  };
+
+  window.loginWithGoogle = function() {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        handleUserRoleAndRedirect(result.user.email);
+      })
+      .catch((error) => {
+        alert("تعذر تسجيل الدخول عبر جوجل: " + error.message);
+      });
+  };
+
+  window.loginAsGuest = function() {
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userRole", "guest");
+    localStorage.setItem("isGuest", "true");
+    localStorage.setItem("guestLoginTime", new Date().getTime().toString());
+
+    alert("مرحباً بك كمستكشف، سيتم مسح بياناتك تلقائياً بعد 30 يوم.");
+    closeLoginModal();
+    location.reload();
+  };
+
+  window.resetPassword = function() {
+    const emailInput = document.getElementById("userEmail").value.trim();
+    if (!emailInput) {
+        alert("يرجى إدخال البريد الإلكتروني لإرسال رابط إعادة تعيين كلمة المرور.");
+        return;
+    }
+    sendPasswordResetEmail(auth, emailInput)
+      .then(() => {
+        alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح.");
+      })
+      .catch((error) => {
+        alert("تعذر إرسال رابط إعادة التعيين: " + error.message);
+      });
+  };
+</script>
+</body>
+</html>
